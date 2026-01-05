@@ -1,0 +1,60 @@
+<?php
+/**
+ * Main Entry Point
+ *
+ * This is the primary file that handles incoming requests.
+ */
+
+// 1. Bootstrap
+require_once __DIR__ . '/config/db.php';
+$pdo = get_db_connection();
+
+// 2. Routing Logic
+// Get the requested path from the URL (e.g., "/my-first-post")
+$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// Remove the base path if the CMS is in a subdirectory, and trim slashes
+// For now, we assume it's at the root or handled by RewriteBase
+$path = trim($request_uri, '/');
+
+// 3. Dispatch
+if ($path === '' || $path === 'index.php') {
+    // --- HOMEPAGE ---
+    // For now, we'll just list the latest posts inline (Temporary View)
+    // In the next step, we will move this to `templates/home.php`
+    $stmt = $pdo->query("SELECT * FROM posts WHERE post_status = 'publish' ORDER BY created_at DESC LIMIT 5");
+    $posts = $stmt->fetchAll();
+    
+    // Simple output for testing routing
+    $page_title = 'Home';
+    require __DIR__ . '/templates/header.php';
+
+    echo "<h1>Welcome to Core CMS</h1>";
+    echo "<ul>";
+    foreach ($posts as $p) {
+        echo "<li><a href='" . BASE_URL . "/" . htmlspecialchars($p['post_slug']) . "'>" . htmlspecialchars($p['post_title']) . "</a></li>";
+    }
+    echo "</ul>";
+    require __DIR__ . '/templates/footer.php';
+
+} else {
+    // --- SINGLE POST LOOKUP ---
+    $stmt = $pdo->prepare("SELECT * FROM posts WHERE post_slug = ? AND post_status = 'publish'");
+    $stmt->execute([$path]);
+    $post = $stmt->fetch();
+
+    if ($post) {
+        // Found! Render the post (Temporary View)
+        $page_title = $post['post_title'];
+        require __DIR__ . '/templates/header.php';
+
+        echo "<h1>" . htmlspecialchars($post['post_title']) . "</h1>";
+        echo "<div>" . nl2br(htmlspecialchars($post['post_content'])) . "</div>";
+        echo "<hr><a href='" . BASE_URL . "'>&larr; Back Home</a>";
+        require __DIR__ . '/templates/footer.php';
+    } else {
+        // --- 404 NOT FOUND ---
+        http_response_code(404);
+        require __DIR__ . '/templates/404.php';
+    }
+}

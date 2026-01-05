@@ -1,0 +1,19 @@
+# Core CMS Routing
+# ----------------------------------------------------------------------
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Set the base URL path (Change this if installed in a subdirectory)
+RewriteBase /
+
+# 1. Security: Prevent viewing .htaccess or .git files
+RewriteRule ^(\.htaccess|\.git) - [F]
+
+# 2. The Routing Logic (The Catch-All)
+# If the request is NOT a real file...
+RewriteCond %{REQUEST_FILENAME} !-f
+# ...and NOT a real directory...
+RewriteCond %{REQUEST_FILENAME} !-d
+# ...send it to index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
