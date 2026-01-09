@@ -1,9 +1,11 @@
 # Core CMS
 
+![Your Stats](https://github-readme-stats.vercel.app/api?username=jasonbra1n&show_icons=true&theme=tokyonight)
+![Streak](https://github-readme-streak-stats.herokuapp.com/?user=jasonbra1n&theme=tokyonight)
 [![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Database](https://img.shields.io/badge/Database-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE.md)
-[![Status](https://img.shields.io/badge/Status-Phase_3:_Routing_&_Experience-success?style=for-the-badge)](.github/ROADMAP.md)
+[![Status](https://img.shields.io/badge/Status-Phase_4:_Expansion-blue?style=for-the-badge)](.github/ROADMAP.md)
 
 A lightweight, modular Content Management System built with PHP and MySQL. Designed with a "Core + Plugin" architecture, featuring a specialized Event Planner module.
 

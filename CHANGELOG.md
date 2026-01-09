@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `admin/settings.php`: Interface to toggle breadcrumbs and customize separators.
   - `includes/functions.php`: Added `render_breadcrumbs()` and option helpers.
   - `docs/BREADCRUMBS.md`: Documentation.
+- **Admin UI Refactoring**:
+  - Created `admin/includes/header.php` and `admin/includes/footer.php` for consistent layout.
+  - Updated all admin pages to use the shared templates.
+  - Fixed session management and path resolution in admin files.
+- **Deployment**:
+  - Added `docs/DEPLOYMENT.md` with FTP exclusion list.
 
 ## [0.1.0] - 2026-01-04
 
