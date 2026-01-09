@@ -69,38 +69,14 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $post['id'] ? 'Edit Post' : 'New Post'; ?> - Core CMS</title>
+<?php $page_title = $post['id'] ? 'Edit Post' : 'New Post'; require_once __DIR__ . '/includes/header.php'; ?>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; }
-        .header { background-color: #1c2a38; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-size: 1.5em; margin: 0; }
-        .header a { color: #fff; text-decoration: none; margin-left: 15px; }
-        .container { padding: 30px; max-width: 800px; margin: 0 auto; }
-        .card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
-        .form-group input[type="text"], 
-        .form-group textarea, 
-        .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; box-sizing: border-box; }
         .form-group textarea { height: 300px; resize: vertical; }
-        .btn { padding: 12px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; }
-        .btn:hover { background-color: #0056b3; }
         .error { color: red; margin-bottom: 15px; }
     </style>
-</head>
-<body>
-    <div class="header">
-        <h1><?php echo $post['id'] ? 'Edit Post' : 'New Post'; ?></h1>
-        <div>
-            <a href="posts.php">Back to Posts</a>
-        </div>
-    </div>
-
     <div class="container">
         <div class="card">
             <?php if ($error): ?>
@@ -139,4 +115,5 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </body>
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
 </html>

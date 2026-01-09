@@ -6,6 +6,7 @@
  */
 
 session_start();
+
 require_once __DIR__ . '/../config/db.php';
 
 // Auth Check
@@ -60,39 +61,12 @@ $stmt->execute([$menu_id]);
 $items = $stmt->fetchAll();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Menu: <?php echo htmlspecialchars($menu['name']); ?> - Core CMS</title>
+<?php $page_title = 'Edit Menu: ' . $menu['name']; require_once __DIR__ . '/includes/header.php'; ?>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; }
-        .header { background-color: #1c2a38; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-size: 1.5em; margin: 0; }
-        .header a { color: #fff; text-decoration: none; margin-left: 15px; }
-        .container { padding: 30px; max-width: 800px; margin: 0 auto; }
-        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .btn { padding: 8px 15px; background-color: #007bff; color: #fff; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
-        .btn:hover { background-color: #0056b3; }
-        .btn-danger { background-color: #dc3545; }
-        .btn-danger:hover { background-color: #bd2130; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: #f8f9fa; font-weight: 600; }
-        input[type="text"], input[type="number"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
         .form-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
         .form-group { display: flex; flex-direction: column; }
         .form-group label { font-size: 0.85em; font-weight: bold; margin-bottom: 4px; }
     </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Edit Menu: <?php echo htmlspecialchars($menu['name']); ?></h1>
-        <div>
-            <a href="menus.php">Back to Menus</a>
-            <a href="logout.php">Logout</a>
-        </div>
-    </div>
 
     <div class="container">
         <!-- Add New Item -->
@@ -154,4 +128,5 @@ $items = $stmt->fetchAll();
         </div>
     </div>
 </body>
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
 </html>

@@ -50,37 +50,7 @@ if (isset($_GET['delete'])) {
 $menus = $pdo->query("SELECT * FROM menus ORDER BY id ASC")->fetchAll();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Menus - Core CMS</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; color: #333; margin: 0; }
-        .header { background-color: #1c2a38; color: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-size: 1.5em; margin: 0; }
-        .header a { color: #fff; text-decoration: none; margin-left: 15px; }
-        .container { padding: 30px; max-width: 800px; margin: 0 auto; }
-        .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .btn { padding: 8px 15px; background-color: #007bff; color: #fff; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
-        .btn:hover { background-color: #0056b3; }
-        .btn-danger { background-color: #dc3545; }
-        .btn-danger:hover { background-color: #bd2130; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: #f8f9fa; font-weight: 600; }
-        input[type="text"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 200px; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Manage Menus</h1>
-        <div>
-            <a href="index.php">Dashboard</a>
-            <a href="logout.php">Logout</a>
-        </div>
-    </div>
+<?php $page_title = 'Manage Menus'; require_once __DIR__ . '/includes/header.php'; ?>
 
     <div class="container">
         <!-- Create New Menu -->
@@ -131,4 +101,5 @@ $menus = $pdo->query("SELECT * FROM menus ORDER BY id ASC")->fetchAll();
         </div>
     </div>
 </body>
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
 </html>
