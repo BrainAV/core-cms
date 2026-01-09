@@ -24,6 +24,7 @@ Detailed design and planning documents for specific modules.
 *   [**Roadmap**](../.github/ROADMAP.md): Active task tracking.
 *   [**Routing Guide**](ROUTING.md): How Pretty URLs and `.htaccess` work.
 *   [**Menu System**](MENUS.md): Database-driven navigation architecture.
+*   [**Deployment Guide**](DEPLOYMENT.md): FTP exclusion lists and server setup.
 *   [**Gemini Prompt Guide**](../.gemini/GEMINI.md): How to use AI assistance for this project.
 
 ## 🔮 Future Documentation Plan

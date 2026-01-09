@@ -5,13 +5,11 @@ Use this file for:
 - Brainstorming logic before writing code.
 - Storing error messages or debug output.
 
-## 🚧 Current Session: Phase 3 (Routing & Experience)
+## 🚧 Current Session: Phase 4 (Expansion)
 
-*   [x] **Routing & Theming**: Completed (v0.1.0).
-*   [x] **Step 1:** Create `admin/menus.php` (Manage Menu Containers).
-*   [x] **Step 2:** Create `admin/menu-edit.php` (Manage Menu Items).
-*   [x] **Step 3:** Update `templates/header.php` to render dynamic menus.
-*   [x] **Step 4:** Create `admin/settings.php` and `render_breadcrumbs()` helper.
+*   [ ] **Step 1:** Create `categories` and `post_tags` tables (Database Update).
+*   [ ] **Step 2:** Update `admin/post-edit.php` to save Categories/Tags.
+*   [ ] **Step 3:** Create `admin/media.php` (Basic File Upload).
 
 ## 🧠 Brainstorming / Notes
 
@@ -43,27 +41,3 @@ Use this file for:
     *   **Concept:** Pages/Posts can have children (Sub-pages).
     *   **Requirement:** Add `parent_id` to `posts` table.
     *   **Feature:** Breadcrumbs generator (e.g., Home > Parent > Child).
-
-
-
-When uploading files from this repository to your live web server / site. A file exclusion list consists of the following:
-\System Volume Information\
-\$Recycle.Bin\
-\RECYCLE?\
-\Recovery\
-*\thumbs.db
-.git\
-.gemini\
-.github\
-db\
-docs\
-.gitignore
-.editorconfig
-LICENSE
-README.md
-CHANGELOG.md
-*\db_creds-sample.php
-
-Also these folders are from cpanel if you are syncing the web folder and can be ignored as well:
-.well-known\*
-cgi-bin\
