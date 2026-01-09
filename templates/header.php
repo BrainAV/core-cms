@@ -21,10 +21,11 @@
             Core CMS
         </a>
         <nav class="site-nav">
-            <!-- Menu items will go here in Phase 3.3 -->
+            <?php render_menu('main-menu'); ?>
         </nav>
     </div>
 </header>
 
 <main class="site-main">
     <div class="container">
+        <?php if (function_exists('render_breadcrumbs')) render_breadcrumbs($page_title ?? ''); ?>

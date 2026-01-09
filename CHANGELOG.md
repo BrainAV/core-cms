@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Breadcrumbs System**:
+  - `admin/settings.php`: Interface to toggle breadcrumbs and customize separators.
+  - `includes/functions.php`: Added `render_breadcrumbs()` and option helpers.
+  - `docs/BREADCRUMBS.md`: Documentation.
+
 ## [0.1.0] - 2026-01-04
 
 ### Added
@@ -46,6 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `admin/menu-edit.php`: Manager for menu links.
   - `docs/MENUS.md`: Documentation for the menu system.
 - `plugins/event-planner/install.php`: Database installer for the Event Planner plugin.
+
+- `docs/USER_ROLES.md`: Defined security roles (Admin, Editor, Subscriber) and plugin roles.
 
 ### Changed
 - `docs/PROJECT_PLAN.md`: Added Templating and Configuration strategies.

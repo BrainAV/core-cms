@@ -14,14 +14,15 @@ This document tracks the active development status of Core CMS.
 - [x] **CRUD**: Create, Read, Update, Delete Posts.
 - [x] **Docs**: Update Admin Manual.
 
-## 🔴 Phase 3: Routing & Experience
+## ✅ Phase 3: Routing & Experience
 - [x] Pretty URLs (`.htaccess`).
 - [x] **Router**: Update `index.php` to handle dispatching.
 - [x] **404 Page**: Custom "Page Not Found" handler.
 - [x] Basic Theming (Header/Footer separation).
-- [ ] **Menus**: Database-driven Menu System.
+- [x] **Menus**: Database-driven Menu System.
+- [x] **Breadcrumbs**: Helper function and Settings.
 
-## 🔴 Phase 4: Expansion
+## 🟢 Phase 4: Expansion
 - [ ] Categories & Tags.
 - [ ] Media Manager (Image Uploads).
 - [ ] User Roles.
@@ -37,6 +38,19 @@ This document tracks the active development status of Core CMS.
 - [ ] **Event Agent**: AI Booking via Function Calling.
 - [ ] **Admin Copilot**: Content generation helper.
 - [ ] **Generative UI**: AI-created layouts (Experimental).
+
+## 🔵 Phase 7: Commerce & IoT (Future Plugins)
+- [ ] **Store / E-commerce**:
+    - [ ] PayPal Standard & Stripe Integration.
+    - [ ] Printful Merch connection.
+    - [ ] Simple Product Manager (Books, Clothing, Crystals).
+- [ ] **Digital Signage**:
+    - [ ] TV/Screen Controller (Headless Mode).
+    - [ ] Digital Menus (linked to Products).
+    - [ ] WooCommerce API Integration (Stock/Price sync).
+- [ ] **Network Management**:
+    - [ ] WiFi Hotspot Manager (Captive Portal).
+    - [ ] Local Host Optimization (Raspberry Pi 5 support).
 
 ---
 

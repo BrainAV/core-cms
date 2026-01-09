@@ -67,7 +67,8 @@
 
 * [x] Implement "Pretty URLs" via `.htaccess` (e.g., `/post/my-title` instead of `post.php?id=1`).
 * [x] Basic Theming: Separate the logic from the HTML (header.php, footer.php).
-* [ ] **Menu System:** Database-driven navigation menus.
+* [x] **Menu System:** Database-driven navigation menus.
+* [x] **Breadcrumbs:** Helper function to display path hierarchy.
 
 ### Phase 4: Expansion (The "Drupal-Lite" Phase)
 

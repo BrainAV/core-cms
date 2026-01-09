@@ -40,7 +40,26 @@ Click the red **Delete** button on the posts list. **Warning:** This action is i
 
 ---
 
-## 3. Event Planner (Plugin)
+## 3. Managing Menus
+
+1.  Navigate to **Navigation Menus** from the Dashboard.
+2.  **Create a Menu**: Give it a name (e.g., "Main Header") and click Create.
+3.  **Add Links**: Click **Manage Links** next to your new menu.
+    *   **Label**: What the user sees (e.g., "Home").
+    *   **URL**: Where it goes (e.g., `/` or `/about`).
+    *   **Order**: Lower numbers appear first.
+
+---
+
+## 4. Site Settings
+
+Navigate to **Site Settings** to configure global options.
+*   **Breadcrumbs**: Enable or disable the path navigation (e.g., `Home > Page`).
+    *   You can customize the **Separator** (e.g., `>`) and the **Home Text**.
+
+---
+
+## 5. Event Planner (Plugin)
 
 *(Coming in Phase 5)*
 

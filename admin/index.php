@@ -64,7 +64,7 @@ $user_id = $_SESSION['user_id'];
                 <a href="#">Manage Pages</a>
                 <a href="#">Manage Events</a>
                 <a href="menus.php">Navigation Menus</a>
-                <a href="#">Site Settings</a>
+                <a href="settings.php">Site Settings</a>
             </div>
         </div>
     </div>

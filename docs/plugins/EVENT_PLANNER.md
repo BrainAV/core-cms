@@ -3,8 +3,16 @@
 ## 1. Overview
 The **Event Planner** is the flagship plugin for Core CMS. It transforms the simple blog engine into a management system for events, vendors, and clients.
 
+**[View Active Roadmap](EVENT_PLANNER_ROADMAP.md)**
+
 ## 2. Architecture
 *   **Location**: `/plugins/event-planner/`
+*   **File Structure**:
+    *   `install.php`: Database setup.
+    *   `admin/`:
+        *   `menu.php`: Returns the sidebar link definition.
+        *   `events.php`: The main list view.
+        *   `event-edit.php`: The editor form.
 *   **Database**: Uses the `events` table (and potentially `bookings` in the future).
 *   **Integration**: Hooks into the Core CMS routing and admin menu.
 

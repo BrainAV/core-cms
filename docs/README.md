@@ -7,6 +7,8 @@ Welcome to the documentation hub for **Core CMS**.
 *   [**Database Architecture**](DATABASE.md): Detailed schema explanation and relationships.
 *   [**Database Schema**](../db/schema.sql): The raw SQL structure (reference).
 *   [**Branding Guidelines**](BRANDING.md): Visual identity, logo concepts, and design philosophy.
+*   [**User Roles**](USER_ROLES.md): Definitions of permissions and access levels.
+*   [**Plugin Architecture**](PLUGINS.md): How to build and structure extensions.
 
 ## 📘 User Guides
 *   [**Admin Manual**](ADMIN_MANUAL.md): Instructions for managing content and events via the dashboard.
@@ -21,7 +23,7 @@ Detailed design and planning documents for specific modules.
 *   [**Style Guide**](../.github/STYLE_GUIDE.md): Coding standards and naming conventions.
 *   [**Roadmap**](../.github/ROADMAP.md): Active task tracking.
 *   [**Routing Guide**](ROUTING.md): How Pretty URLs and `.htaccess` work.
-*   **Menu System**: Database-driven navigation architecture.
+*   [**Menu System**](MENUS.md): Database-driven navigation architecture.
 *   [**Gemini Prompt Guide**](../.gemini/GEMINI.md): How to use AI assistance for this project.
 
 ## 🔮 Future Documentation Plan
