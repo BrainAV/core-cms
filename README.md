@@ -4,6 +4,7 @@
 [![Database](https://img.shields.io/badge/Database-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE.md)
 [![Status](https://img.shields.io/badge/Status-Phase_4:_Expansion-blue?style=for-the-badge)](.github/ROADMAP.md)
+[![Demo](https://img.shields.io/badge/Demo-Live_Site-success?style=for-the-badge&logo=firefox&logoColor=white)](https://core-cms.brainav.ca/)
 
 A lightweight, modular Content Management System built with PHP and MySQL. Designed with a "Core + Plugin" architecture, featuring a specialized Event Planner module.
 
@@ -25,7 +26,7 @@ A lightweight, modular Content Management System built with PHP and MySQL. Desig
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/jasonbra1n/core-cms.git
+    git clone https://github.com/BrainAV/core-cms.git
     ```
 2.  **Server Setup (CPanel/FTP)**:
     *   Create a MySQL Database and User in CPanel.
