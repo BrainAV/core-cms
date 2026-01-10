@@ -59,7 +59,14 @@ Navigate to **Site Settings** to configure global options.
 
 ---
 
-## 5. Event Planner (Plugin)
+## 5. Organizing Content (Categories & Tags)
+
+*   **Categories**: Group your posts into broad topics (e.g., "News", "Tutorials").
+*   **Tags**: Label your posts with specific keywords (e.g., "PHP", "Security").
+
+---
+
+## 6. Event Planner (Plugin)
 
 *(Coming in Phase 5)*
 
@@ -68,4 +75,4 @@ Navigate to **Site Settings** to configure global options.
 
 ---
 
-*Last Updated: Phase 2 (Admin MVP)*
+*Last Updated: v0.2.0 (Phase 4 Expansion)*

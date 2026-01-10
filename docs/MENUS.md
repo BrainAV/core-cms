@@ -11,7 +11,7 @@ The system uses two tables (defined in `db/schema.sql`):
 Represents a menu location (e.g., "Main Header", "Footer Links").
 *   `id`: Unique ID.
 *   `name`: Human-readable name (e.g., "Top Nav").
-*   `slug`: Unique identifier used in code (e.g., `main-nav`).
+*   `slug`: Unique identifier used in code (e.g., `main-menu`).
 
 ### B. `menu_items` (The Links)
 The actual links inside a container.
@@ -32,8 +32,9 @@ The actual links inside a container.
 We use a helper function (to be built in Phase 3) to fetch and render the menu by its slug.
 
 ```php
-// Example Usage in header.php
-render_menu('main-nav');
+// Usage in templates/header.php
+// Second parameter allows custom CSS class (default is 'menu')
+render_menu('main-menu', 'site-menu');
 ```
 
 ## 4. Future Features

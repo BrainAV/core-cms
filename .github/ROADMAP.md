@@ -23,9 +23,16 @@ This document tracks the active development status of Core CMS.
 - [x] **Breadcrumbs**: Helper function and Settings.
 
 ## 🟢 Phase 4: Expansion
-- [ ] Categories & Tags.
-- [ ] Media Manager (Image Uploads).
+- [x] Categories & Tags.
+- [x] Media Manager (Uploads & Deletion).
+- [ ] Media Metadata (Alt Text, Captions).
 - [ ] User Roles.
+- [ ] Theme Manager.
+- [x] Advanced Editor (Editor.js Integration).
+- [ ] Menu Manager Enhancements (Link by Key/ID).
+- [ ] Site Identity (Title, Logo, Footer Text).
+- [ ] Label Editor.
+- [x] User Profile / Control Panel.
 
 ## 🔴 Phase 5: Event Planner Plugin (Side Quest)
 - [ ] Plugin Architecture (Hooks).
@@ -39,11 +46,12 @@ This document tracks the active development status of Core CMS.
 - [ ] **Admin Copilot**: Content generation helper.
 - [ ] **Generative UI**: AI-created layouts (Experimental).
 
-## 🔵 Phase 7: Commerce & IoT (Future Plugins)
+## 🔵 Phase 7: Commerce, IoT & Plugins
 - [ ] **Store / E-commerce**:
     - [ ] PayPal Standard & Stripe Integration.
     - [ ] Printful Merch connection.
     - [ ] Simple Product Manager (Books, Clothing, Crystals).
+    - [ ] **Contact Form Plugin**: Simple form builder with email notifications.
 - [ ] **Digital Signage**:
     - [ ] TV/Screen Controller (Headless Mode).
     - [ ] Digital Menus (linked to Products).

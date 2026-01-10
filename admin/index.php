@@ -43,8 +43,9 @@ require_once __DIR__ . '/includes/header.php';
             <h2>Quick Links</h2>
             <div class="links">
                 <a href="posts.php">Manage Posts</a>
-                <a href="#">Manage Pages</a>
-                <a href="#">Manage Events</a>
+                <a href="pages.php">Manage Pages</a>
+                <a href="categories.php">Categories</a>
+                <a href="media.php">Media Library</a>
                 <a href="menus.php">Navigation Menus</a>
                 <a href="settings.php">Site Settings</a>
             </div>

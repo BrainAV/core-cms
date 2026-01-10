@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-01-09
+
 ### Added
 - **Breadcrumbs System**:
   - `admin/settings.php`: Interface to toggle breadcrumbs and customize separators.
@@ -18,6 +20,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Fixed session management and path resolution in admin files.
 - **Deployment**:
   - Added `docs/DEPLOYMENT.md` with FTP exclusion list.
+- **Pages Management**:
+  - `admin/pages.php`: Dedicated list view for managing static pages.
+  - Updated `admin/post-edit.php` to support both Posts and Pages.
+- **Home Page Logic**:
+  - Added `is_home` flag to `posts` table.
+  - Implemented "Set as Homepage" functionality in Page Editor.
+  - Updated `index.php` to render designated static homepage.
+- **Menu System Upgrades**:
+  - Added support for Sub-menus (nested dropdowns).
+  - Added "Add Content" dropdown to easily link existing Posts/Pages.
+  - Improved CSS styling for navigation (`.site-menu`).
+- **Taxonomy System (Categories & Tags)**:
+  - `db/schema.sql`: Added tables for categories, tags, and pivot tables.
+  - `admin/categories.php`: Manager for creating, editing, and deleting categories.
+  - `admin/post-edit.php`: Added UI to assign categories and tags to posts.
+  - `docs/CATEGORIES_TAGS.md`: Documentation for the taxonomy system.
+- **Media System**:
+  - `admin/media.php`: Library for uploading, viewing, and deleting files.
+  - `docs/MEDIA.md`: Documentation and security overview.
+  - `uploads/.htaccess`: Security rules to prevent script execution.
+- **User Profile System**:
+  - `admin/profile.php`: Interface for users to update Name, Email, Password, and Avatar.
+  - `docs/PROFILE.md`: Documentation for user settings.
+  - `db/schema.sql`: Added `avatar` column to `users` table.
+- **Advanced Editor (Editor.js)**:
+  - `admin/post-edit.php`: Replaced `<textarea>` with Block Editor (Headers, Lists, Quotes, Code).
+  - `includes/functions.php`: Added `render_blocks()` to convert JSON to HTML.
+  - `index.php`: Updated frontend to render block content.
+  - `assets/css/style.css`: Added styling for code blocks (`pre`, `code`) and editor elements.
+  - `docs/EDITOR.md`: Strategy documentation.
+
+### Changed
+- `admin/index.php`: Removed placeholder "Manage Events" link.
+- `docs/MENUS.md`: Updated documentation to reflect `main-menu` slug usage.
+- `.github/ROADMAP.md`: Added "Theme Manager" to Phase 4.
 
 ## [0.1.0] - 2026-01-04
 

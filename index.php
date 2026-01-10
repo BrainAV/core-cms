@@ -21,6 +21,20 @@ $path = trim($request_uri, '/');
 // 3. Dispatch
 if ($path === '' || $path === 'index.php') {
     // --- HOMEPAGE ---
+    
+    // Check for a designated static homepage
+    $stmt = $pdo->query("SELECT * FROM posts WHERE is_home = 1 AND post_status = 'publish' LIMIT 1");
+    $home_page = $stmt->fetch();
+
+    if ($home_page) {
+        $page_title = $home_page['post_title'];
+        require __DIR__ . '/templates/header.php';
+        echo "<h1>" . htmlspecialchars($home_page['post_title']) . "</h1>";
+        echo "<div class='entry-content'>" . render_blocks($home_page['post_content']) . "</div>";
+        require __DIR__ . '/templates/footer.php';
+        exit;
+    }
+
     // For now, we'll just list the latest posts inline (Temporary View)
     // In the next step, we will move this to `templates/home.php`
     $stmt = $pdo->query("SELECT * FROM posts WHERE post_status = 'publish' ORDER BY created_at DESC LIMIT 5");
@@ -50,7 +64,7 @@ if ($path === '' || $path === 'index.php') {
         require __DIR__ . '/templates/header.php';
 
         echo "<h1>" . htmlspecialchars($post['post_title']) . "</h1>";
-        echo "<div>" . nl2br(htmlspecialchars($post['post_content'])) . "</div>";
+        echo "<div class='entry-content'>" . render_blocks($post['post_content']) . "</div>";
         echo "<hr><a href='" . BASE_URL . "'>&larr; Back Home</a>";
         require __DIR__ . '/templates/footer.php';
     } else {

@@ -20,7 +20,7 @@ A lightweight, modular Content Management System built with PHP and MySQL. Desig
 *   **Roadmap**: [View Active Roadmap](.github/ROADMAP.md)
 *   **Architecture**: [Project Plan](docs/PROJECT_PLAN.md)
 *   **Database**: [Schema Dictionary](docs/DATABASE.md)
-*   **User Guide**: [Admin Manual](docs/ADMIN_MANUAL.md)
+*   **Docs Index**: [Table of Contents](docs/README.md)
 *   **Developers**: [Contributing Guide](.github/CONTRIBUTING.md) & [Style Guide](.github/STYLE_GUIDE.md)
 
 ## 🛠️ Installation

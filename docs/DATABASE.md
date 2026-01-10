@@ -49,3 +49,22 @@ The actual links inside a menu.
 Stores event-specific data. This is separate from `posts` to allow for specific columns like dates and capacity without bloating the main content table.
 *   **Columns:** `start_date`, `end_date`, `location`, `capacity`.
 *   **Future:** Could link to `users` for an attendee list table (`event_attendees`).
+
+---
+
+## 4. Taxonomy System
+
+### `categories` & `tags`
+Organizes content.
+*   **Categories**: Hierarchical (`parent_id`).
+*   **Tags**: Flat keywords.
+*   **Pivot Tables**: `post_categories` and `post_tags` link these to `posts` (Many-to-Many).
+
+---
+
+## 5. Media System
+
+### `media`
+Stores metadata for uploaded files.
+*   **Columns:** `file_name`, `file_path` (relative to root), `file_type` (MIME).
+*   **Storage**: Physical files reside in `/uploads/{year}/{month}/`.

@@ -89,8 +89,12 @@ $user_id = $_SESSION['user_id'];
         <h1>Core CMS</h1>
         <a href="index.php">Dashboard</a>
         <a href="posts.php">Manage Posts</a>
+        <a href="pages.php">Manage Pages</a>
+        <a href="categories.php">Categories</a>
+        <a href="media.php">Media Library</a>
         <a href="menus.php">Navigation Menus</a>
         <a href="settings.php">Site Settings</a>
+        <a href="profile.php">My Profile</a>
         <a href="logout.php">Logout</a>
     </nav>
     <main class="admin-content">

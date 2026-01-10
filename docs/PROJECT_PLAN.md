@@ -72,10 +72,13 @@
 
 ### Phase 4: Expansion (The "Drupal-Lite" Phase)
 
-* [ ] **Categories/Tags:** One-to-many relationships.
+* [x] **Categories/Tags:** One-to-many relationships.
 * [ ] **Media Manager:** Simple image uploading for posts.
 * [ ] **User Roles:** Editor vs. Admin permissions.
-* [ ] **Advanced Editor:** Upgrade to a Block-based editor (e.g., Editor.js) with a "Classic" block option.
+* [x] **Advanced Editor:** Implement **Editor.js** (JSON storage) with Markdown shortcuts.
+* [ ] **Theme Manager:** Ability to switch between different template sets.
+* [x] **User Profile:** Allow users to manage their own settings (Name, Email, Password).
+* [ ] **Site Identity:** Manage Site Title, Logo URL, and Footer Content via Settings.
 
 ### Phase 5: The "Side Quest" (Event Planner Plugin)
 
@@ -90,6 +93,9 @@
 * [ ] **Event Agent:** Allow the AI Assistant to query the `events` table and "book" spots via function calling.
 * [ ] **Admin Copilot:** An admin-side helper to draft posts or summarize data.
 * [ ] **Generative UI (Experimental):** An API endpoint allowing AI to generate and save HTML/CSS layouts to a `templates/custom` folder ("Coding itself").
+
+### Phase 7: Commerce, IoT & Plugins
+* [ ] **Contact Form:** Simple form builder with email notifications.
 
 ---
 

@@ -60,10 +60,126 @@ a:hover { color: var(--color-gold); }
 
 .site-logo img { height: 40px; width: auto; }
 
+/* --- Navigation --- */
+.site-menu {
+    list-style: none; /* Remove dots */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Horizontal layout */
+    gap: 20px;
+}
+
+.site-menu li {
+    position: relative; /* Anchor for sub-menus */
+}
+
+.site-menu a {
+    color: var(--color-white); /* Fix visibility */
+    font-weight: 500;
+    display: block;
+}
+
+.site-menu a:hover {
+    color: var(--color-gold);
+}
+
+/* Sub-menus */
+.site-menu ul {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-navy);
+    min-width: 200px;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.site-menu li:hover > ul {
+    display: flex; /* Show on hover */
+}
+
+.site-menu ul a {
+    padding: 8px 15px;
+}
+
+.site-menu ul a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
 /* --- Main Content --- */
 .site-main {
     flex: 1; /* Pushes footer down */
     padding: 40px 0;
+}
+
+/* --- Editor Content --- */
+.entry-content h2, .entry-content h3 {
+    margin-top: 1.5em;
+    color: var(--color-navy);
+}
+
+.entry-content pre {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 0.9em;
+    margin-bottom: 1.5em;
+}
+
+.entry-content code {
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    background: rgba(0,0,0,0.05);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.entry-content pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+.editor-quote {
+    border-left: 4px solid var(--color-gold);
+    margin: 1.5em 0;
+    padding-left: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.editor-delimiter {
+    border: 0;
+    text-align: center;
+    margin: 2em 0;
+}
+.editor-delimiter::before {
+    content: '***';
+    font-size: 1.5em;
+    color: #ccc;
+}
+
+.editor-image {
+    margin: 1.5em 0;
+}
+.editor-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.editor-image figcaption {
+    text-align: center;
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 5px;
 }
 
 /* --- Footer --- */

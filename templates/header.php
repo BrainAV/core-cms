@@ -21,7 +21,7 @@
             Core CMS
         </a>
         <nav class="site-nav">
-            <?php render_menu('main-menu'); ?>
+            <?php render_menu('main-menu', 'site-menu'); ?>
         </nav>
     </div>
 </header>

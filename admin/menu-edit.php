@@ -34,15 +34,34 @@ if (!$menu) {
 
 $message = '';
 
+// --- Handle Add Page ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_page'])) {
+    $page_id = $_POST['page_id'];
+    $parent_id = !empty($_POST['parent_id']) ? $_POST['parent_id'] : null;
+
+    $stmt = $pdo->prepare("SELECT post_title, post_slug FROM posts WHERE id = ?");
+    $stmt->execute([$page_id]);
+    $page = $stmt->fetch();
+
+    if ($page) {
+        $label = $page['post_title'];
+        $url = '/' . $page['post_slug'];
+        $stmt = $pdo->prepare("INSERT INTO menu_items (menu_id, label, url, parent_id, sort_order) VALUES (?, ?, ?, ?, 0)");
+        $stmt->execute([$menu_id, $label, $url, $parent_id]);
+        $message = "Page added successfully.";
+    }
+}
+
 // --- Handle Add Item ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_item'])) {
     $label = trim($_POST['label']);
     $url = trim($_POST['url']);
     $sort_order = (int) $_POST['sort_order'];
+    $parent_id = !empty($_POST['parent_id']) ? $_POST['parent_id'] : null;
     
     if ($label && $url) {
-        $stmt = $pdo->prepare("INSERT INTO menu_items (menu_id, label, url, sort_order) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$menu_id, $label, $url, $sort_order]);
+        $stmt = $pdo->prepare("INSERT INTO menu_items (menu_id, label, url, parent_id, sort_order) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$menu_id, $label, $url, $parent_id, $sort_order]);
         $message = "Link added successfully.";
     }
 }
@@ -60,6 +79,10 @@ $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE menu_id = ? ORDER BY sort_
 $stmt->execute([$menu_id]);
 $items = $stmt->fetchAll();
 
+// Fetch Pages AND Posts for Dropdown
+$page_stmt = $pdo->query("SELECT id, post_title, post_type FROM posts WHERE post_status = 'publish' ORDER BY post_type ASC, post_title ASC");
+$pages = $page_stmt->fetchAll();
+
 ?>
 <?php $page_title = 'Edit Menu: ' . $menu['name']; require_once __DIR__ . '/includes/header.php'; ?>
     <style>
@@ -69,9 +92,40 @@ $items = $stmt->fetchAll();
     </style>
 
     <div class="container">
+        <!-- Add Existing Page -->
+        <div class="card">
+            <h3>Add Page</h3>
+            <form method="post" class="form-row">
+                <input type="hidden" name="add_page" value="1">
+                <div class="form-group">
+                    <label>Select Content</label>
+                    <select name="page_id" required style="padding: 9px; min-width: 200px;">
+                        <option value="">-- Choose Content --</option>
+                        <?php foreach ($pages as $p): ?>
+                            <option value="<?php echo $p['id']; ?>">
+                                <?php echo htmlspecialchars($p['post_title']); ?> (<?php echo ucfirst($p['post_type']); ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Parent Item (Optional)</label>
+                    <select name="parent_id" style="padding: 9px;">
+                        <option value="">(No Parent)</option>
+                        <?php foreach ($items as $item): ?>
+                            <option value="<?php echo $item['id']; ?>"><?php echo htmlspecialchars($item['label']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Add Page</button>
+                </div>
+            </form>
+        </div>
+
         <!-- Add New Item -->
         <div class="card">
-            <h3>Add Link</h3>
+            <h3>Add Custom Link</h3>
             <?php if ($message): ?><p style="color: green;"><?php echo htmlspecialchars($message); ?></p><?php endif; ?>
             <?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted'): ?><p style="color: green;">Link deleted.</p><?php endif; ?>
             
@@ -85,6 +139,15 @@ $items = $stmt->fetchAll();
                     <div class="form-group">
                         <label>URL</label>
                         <input type="text" name="url" placeholder="e.g. / or /about" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Parent</label>
+                        <select name="parent_id" style="padding: 8px;">
+                            <option value="">(None)</option>
+                            <?php foreach ($items as $item): ?>
+                                <option value="<?php echo $item['id']; ?>"><?php echo htmlspecialchars($item['label']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Order</label>

@@ -132,3 +132,71 @@ function render_breadcrumbs($current_title = '') {
     }
     echo '</nav>';
 }
+
+/**
+ * Render Editor.js JSON to HTML.
+ *
+ * @param string $json_string The JSON string from the database.
+ * @return string HTML output.
+ */
+function render_blocks($json_string) {
+    $data = json_decode($json_string, true);
+
+    // Fallback for legacy content (not JSON)
+    if (json_last_error() !== JSON_ERROR_NONE || !isset($data['blocks'])) {
+        return nl2br(htmlspecialchars($json_string));
+    }
+
+    $html = '';
+    foreach ($data['blocks'] as $block) {
+        switch ($block['type']) {
+            case 'header':
+                $level = $block['data']['level'] ?? 2;
+                $text = $block['data']['text'];
+                $html .= "<h{$level}>{$text}</h{$level}>";
+                break;
+            case 'paragraph':
+                $text = $block['data']['text'];
+                $html .= "<p>{$text}</p>";
+                break;
+            case 'list':
+                $style = ($block['data']['style'] ?? 'unordered') === 'ordered' ? 'ol' : 'ul';
+                $items = $block['data']['items'] ?? [];
+                $html .= "<{$style}>";
+                foreach ($items as $item) {
+                    $html .= "<li>{$item}</li>";
+                }
+                $html .= "</{$style}>";
+                break;
+            case 'quote':
+                $text = $block['data']['text'];
+                $caption = $block['data']['caption'] ?? '';
+                $html .= "<blockquote class='editor-quote'>{$text}";
+                if ($caption) $html .= "<cite>{$caption}</cite>";
+                $html .= "</blockquote>";
+                break;
+            case 'delimiter':
+                $html .= "<hr class='editor-delimiter'>";
+                break;
+            case 'raw':
+                $html .= $block['data']['html'];
+                break;
+            case 'image':
+                $url = $block['data']['file']['url'] ?? '';
+                $caption = $block['data']['caption'] ?? '';
+                $html .= "<figure class='editor-image'>";
+                $html .= "<img src='{$url}' alt='{$caption}'>";
+                if ($caption) $html .= "<figcaption>{$caption}</figcaption>";
+                $html .= "</figure>";
+                break;
+            case 'code':
+                $code = htmlspecialchars($block['data']['code']);
+                $html .= "<pre><code>{$code}</code></pre>";
+                break;
+            default:
+                // Ignore unknown blocks
+                break;
+        }
+    }
+    return $html;
+}
