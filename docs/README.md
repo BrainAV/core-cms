@@ -25,6 +25,10 @@ Detailed design and planning documents for specific modules.
 *   [**Routing Guide**](ROUTING.md): How Pretty URLs and `.htaccess` work.
 *   [**Menu System**](MENUS.md): Database-driven navigation architecture.
 *   [**Breadcrumbs System**](BREADCRUMBS.md): Configuration and helper functions.
+*   [**Media System**](MEDIA.md): File uploads, storage, and security.
+*   [**Editor Strategy**](EDITOR.md): Block-based editing with Editor.js.
+*   [**Taxonomy System**](CATEGORIES_TAGS.md): Categories and Tags architecture.
+*   [**User Profile System**](PROFILE.md): User settings and avatar management.
 *   [**Deployment Guide**](DEPLOYMENT.md): FTP exclusion lists and server setup.
 *   [**Gemini Prompt Guide**](../.gemini/GEMINI.md): How to use AI assistance for this project.
 *   **Phase 3 Tests**: Verification steps for Routing & Experience.
