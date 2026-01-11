@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `templates/footer.php`: Updated to use dynamic footer text.
   - `docs/SETTINGS.md`: Documentation for global settings.
 - **Marketing Assets**:
-  - `docs/BLOG_POST_ANNOUNCEMENT.md`: Draft blog post for public release.
+  - `docs/blog/BLOG_POST_ANNOUNCEMENT.md`: Draft blog post for public release.
   - `docs/SOCIAL_PREVIEW.md`: AI prompt for generating the repo social image.
 - **Media Metadata**:
   - `admin/media-edit.php`: Interface to edit Alt Text, Title, and Description.
