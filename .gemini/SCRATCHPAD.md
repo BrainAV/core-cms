@@ -5,14 +5,10 @@ Use this file for:
 - Brainstorming logic before writing code.
 - Storing error messages or debug output.
 
-## 🚧 Current Session: Phase 4 (Expansion)
+## 🚧 Current Session: Phase 5 (Event Planner)
 
-*   [x] **Step 1:** Create `categories` and `post_tags` tables (Database Update).
-*   [x] **Step 2:** Update `admin/post-edit.php` to save Categories/Tags.
-*   [x] **Step 3:** Create `admin/profile.php` (User Settings).
-*   [x] **Step 4:** Create `admin/media.php` (Basic File Upload & Gallery).
-*   [ ] **Step 5:** Implement Site Identity (Title, Logo, Footer) in `admin/settings.php`.
-*   [ ] **Step 6:** Add Image Tool to Editor.js (requires upload endpoint).
+*   [ ] **Step 1:** Create plugin directory structure (`plugins/event-planner`).
+*   [ ] **Step 2:** Create `init.php` and `install.php` for the plugin.
 
 ## 🧠 Brainstorming / Notes
 

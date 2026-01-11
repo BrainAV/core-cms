@@ -1,5 +1,6 @@
 <?php
 /**
+ * Theme: Dark Mode
  * Template: Header
  */
 $site_title = get_option('site_title', 'Core CMS');
@@ -11,7 +12,7 @@ $site_logo = get_option('site_logo', '');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($page_title) ? htmlspecialchars($page_title) . ' - ' . htmlspecialchars($site_title) : htmlspecialchars($site_title); ?></title>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/themes/darkmode/style.css">
 </head>
 <body>
 

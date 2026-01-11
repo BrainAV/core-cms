@@ -267,6 +267,7 @@ if (!empty($post['post_content'])) {
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
 
     <script>
         // Safely define tools to prevent crashes if a CDN fails
@@ -277,6 +278,12 @@ if (!empty($post['post_content'])) {
         if (typeof Delimiter !== 'undefined') tools.delimiter = Delimiter;
         if (typeof RawTool !== 'undefined') tools.raw = RawTool;
         if (typeof CodeTool !== 'undefined') tools.code = CodeTool;
+        if (typeof ImageTool !== 'undefined') {
+            tools.image = {
+                class: ImageTool,
+                config: { endpoints: { byFile: 'api/upload.php' } }
+            };
+        }
 
         const editor = new EditorJS({
             holder: 'editorjs',

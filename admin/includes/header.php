@@ -24,6 +24,15 @@ $pdo = get_db_connection();
 // Basic user info for display
 $user_id = $_SESSION['user_id'];
 
+// Ensure role is set (for active sessions prior to this update)
+if (!isset($_SESSION['user_role'])) {
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $u = $stmt->fetch();
+    $_SESSION['user_role'] = $u ? $u['role'] : 'subscriber';
+}
+$user_role = $_SESSION['user_role'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,12 +97,19 @@ $user_id = $_SESSION['user_id'];
     <nav class="admin-nav">
         <h1>Core CMS</h1>
         <a href="index.php">Dashboard</a>
+        <?php if ($user_role !== 'subscriber'): ?>
         <a href="posts.php">Manage Posts</a>
         <a href="pages.php">Manage Pages</a>
         <a href="categories.php">Categories</a>
         <a href="media.php">Media Library</a>
+        <?php endif; ?>
+        <?php if ($user_role === 'admin'): ?>
+        <a href="users.php">Manage Users</a>
         <a href="menus.php">Navigation Menus</a>
+        <a href="themes.php">Theme Manager</a>
         <a href="settings.php">Site Settings</a>
+        <a href="labels.php">Label Editor</a>
+        <?php endif; ?>
         <a href="profile.php">My Profile</a>
         <a href="logout.php">Logout</a>
     </nav>

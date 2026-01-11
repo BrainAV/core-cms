@@ -9,6 +9,7 @@
 require_once __DIR__ . '/config/db.php';
 require_once __DIR__ . '/includes/functions.php';
 $pdo = get_db_connection();
+$theme_path = get_theme_path();
 
 // 2. Routing Logic
 // Get the requested path from the URL (e.g., "/my-first-post")
@@ -28,10 +29,10 @@ if ($path === '' || $path === 'index.php') {
 
     if ($home_page) {
         $page_title = $home_page['post_title'];
-        require __DIR__ . '/templates/header.php';
+        require $theme_path . '/header.php';
         echo "<h1>" . htmlspecialchars($home_page['post_title']) . "</h1>";
         echo "<div class='entry-content'>" . render_blocks($home_page['post_content']) . "</div>";
-        require __DIR__ . '/templates/footer.php';
+        require $theme_path . '/footer.php';
         exit;
     }
 
@@ -42,7 +43,7 @@ if ($path === '' || $path === 'index.php') {
     
     // Simple output for testing routing
     $page_title = 'Home';
-    require __DIR__ . '/templates/header.php';
+    require $theme_path . '/header.php';
 
     echo "<h1>Welcome to Core CMS</h1>";
     echo "<ul>";
@@ -50,7 +51,7 @@ if ($path === '' || $path === 'index.php') {
         echo "<li><a href='" . BASE_URL . "/" . htmlspecialchars($p['post_slug']) . "'>" . htmlspecialchars($p['post_title']) . "</a></li>";
     }
     echo "</ul>";
-    require __DIR__ . '/templates/footer.php';
+    require $theme_path . '/footer.php';
 
 } else {
     // --- SINGLE POST LOOKUP ---
@@ -61,15 +62,15 @@ if ($path === '' || $path === 'index.php') {
     if ($post) {
         // Found! Render the post (Temporary View)
         $page_title = $post['post_title'];
-        require __DIR__ . '/templates/header.php';
+        require $theme_path . '/header.php';
 
         echo "<h1>" . htmlspecialchars($post['post_title']) . "</h1>";
         echo "<div class='entry-content'>" . render_blocks($post['post_content']) . "</div>";
         echo "<hr><a href='" . BASE_URL . "'>&larr; Back Home</a>";
-        require __DIR__ . '/templates/footer.php';
+        require $theme_path . '/footer.php';
     } else {
         // --- 404 NOT FOUND ---
         http_response_code(404);
-        require __DIR__ . '/templates/404.php';
+        require $theme_path . '/404.php';
     }
 }

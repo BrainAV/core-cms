@@ -73,12 +73,15 @@
 ### Phase 4: Expansion (The "Drupal-Lite" Phase)
 
 * [x] **Categories/Tags:** One-to-many relationships.
-* [ ] **Media Manager:** Simple image uploading for posts.
-* [ ] **User Roles:** Editor vs. Admin permissions.
+* [x] **Media Manager:** Simple image uploading for posts.
+* [x] **User Roles:** Editor vs. Admin permissions.
 * [x] **Advanced Editor:** Implement **Editor.js** (JSON storage) with Markdown shortcuts.
-* [ ] **Theme Manager:** Ability to switch between different template sets.
+* [x] **Theme Manager:** Ability to switch between different template sets.
 * [x] **User Profile:** Allow users to manage their own settings (Name, Email, Password).
-* [ ] **Site Identity:** Manage Site Title, Logo URL, and Footer Content via Settings.
+* [x] **Site Identity:** Manage Site Title, Logo URL, and Footer Content via Settings.
+* [x] **Scroll to Top:** Configurable button (Position, Style, Color) to scroll to top.
+* [x] **Label Editor:** Customize UI text strings.
+* [x] **Menu Enhancements:** Link by ID and manual reordering.
 
 ### Phase 5: The "Side Quest" (Event Planner Plugin)
 

@@ -13,6 +13,7 @@ Stores administrators and editors.
 *   **Primary Key:** `id`
 *   **Security:** Passwords must be hashed using `password_hash()` (Bcrypt/Argon2).
 *   **Roles:** Currently supports 'admin' (full access). Future: 'editor', 'author'.
+*   **Profile:** `avatar` stores the relative path to the user's profile picture.
 
 ### `posts`
 The central content table. We use a **Polymorphic** approach here to keep the DB light.
@@ -22,6 +23,7 @@ The central content table. We use a **Polymorphic** approach here to keep the DB
     *   `'post'`: Standard blog entries.
     *   `'page'`: Static content (About, Contact).
 *   **Status:** `'published'`, `'draft'`, `'archived'`.
+*   **Homepage:** `is_home` (Boolean) marks a specific page as the site's front page.
 
 ### `options`
 Key-value storage for site-wide settings (Site Title, Timezone, etc.).
@@ -40,6 +42,7 @@ The actual links inside a menu.
 *   **Foreign Key:** `menu_id` -> `menus.id`
 *   **Hierarchy:** `parent_id` allows for dropdowns/nested links.
 *   **Ordering:** `sort_order` (Integer) determines display position.
+*   **Dynamic Link:** `target_id` links to a specific Post ID, ensuring the URL updates if the post slug changes.
 
 ---
 
@@ -67,4 +70,5 @@ Organizes content.
 ### `media`
 Stores metadata for uploaded files.
 *   **Columns:** `file_name`, `file_path` (relative to root), `file_type` (MIME).
+*   **Metadata:** `alt_text`, `title`, `description` for SEO and accessibility.
 *   **Storage**: Physical files reside in `/uploads/{year}/{month}/`.

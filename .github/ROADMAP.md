@@ -25,13 +25,14 @@ This document tracks the active development status of Core CMS.
 ## 🟢 Phase 4: Expansion
 - [x] Categories & Tags.
 - [x] Media Manager (Uploads & Deletion).
-- [ ] Media Metadata (Alt Text, Captions).
-- [ ] User Roles.
-- [ ] Theme Manager.
+- [x] Media Metadata (Alt Text, Captions).
+- [x] User Roles.
+- [x] Theme Manager.
 - [x] Advanced Editor (Editor.js Integration).
-- [ ] Menu Manager Enhancements (Link by Key/ID).
-- [ ] Site Identity (Title, Logo, Footer Text).
-- [ ] Label Editor.
+- [x] Menu Manager Enhancements (Link by Key/ID).
+- [x] Site Identity (Title, Logo, Footer Text).
+- [x] Label Editor.
+- [x] Scroll to Top (Settings).
 - [x] User Profile / Control Panel.
 
 ## 🔴 Phase 5: Event Planner Plugin (Side Quest)

@@ -1,20 +1,21 @@
 <?php
 /**
+ * Theme: Dark Mode
  * Template: Footer
  */
-$footer_text = get_option('site_footer_text', '&copy; ' . date('Y') . ' Core CMS. Built with PHP & Passion.');
+$footer_text = get_option('site_footer_text', '&copy; ' . date('Y') . ' Core CMS.');
 ?>
     </div> <!-- End .container -->
 </main>
 
 <footer class="site-footer">
     <div class="container">
-        <p><?php echo $footer_text; // Allow HTML in footer ?></p>
+        <p><?php echo $footer_text; ?></p>
     </div>
 </footer>
 
 <?php
-// Scroll to Top Logic
+// Scroll to Top Logic (Copied from default theme for consistency)
 if (get_option('scroll_top_enabled', '0') === '1') {
     $st_pos = get_option('scroll_top_position', 'bottom-right');
     $st_bg = get_option('scroll_top_bg_color', '#007bff');
@@ -24,7 +25,7 @@ if (get_option('scroll_top_enabled', '0') === '1') {
     $pos_css = match($st_pos) {
         'bottom-left' => 'bottom: 20px; left: 20px;',
         'bottom-center' => 'bottom: 20px; left: 50%; transform: translateX(-50%);',
-        default => 'bottom: 20px; right: 20px;', // bottom-right
+        default => 'bottom: 20px; right: 20px;',
     };
 
     $radius = match($st_shape) {
@@ -38,12 +39,8 @@ if (get_option('scroll_top_enabled', '0') === '1') {
 </button>
 
 <script>
-    // Get the button
     var mybutton = document.getElementById("scrollToTopBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
-
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
@@ -51,8 +48,6 @@ if (get_option('scroll_top_enabled', '0') === '1') {
             mybutton.style.display = "none";
         }
     }
-
-    // When the user clicks on the button, scroll to the top of the document
     mybutton.onclick = function() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     };

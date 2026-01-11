@@ -33,6 +33,9 @@ CREATE TABLE `media` (
   `file_name` varchar(255) NOT NULL,
   `file_path` varchar(255) NOT NULL,
   `file_type` varchar(50) NOT NULL,
+  `alt_text` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
   `uploaded_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );

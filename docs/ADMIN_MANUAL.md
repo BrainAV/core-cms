@@ -48,6 +48,7 @@ Click the red **Delete** button on the posts list. **Warning:** This action is i
     *   **Label**: What the user sees (e.g., "Home").
     *   **URL**: Where it goes (e.g., `/` or `/about`).
     *   **Order**: Lower numbers appear first.
+    *   **Reordering**: You can manually update the order numbers in the list view.
 
 ---
 
@@ -56,6 +57,12 @@ Click the red **Delete** button on the posts list. **Warning:** This action is i
 Navigate to **Site Settings** to configure global options.
 *   **Breadcrumbs**: Enable or disable the path navigation (e.g., `Home > Page`).
     *   You can customize the **Separator** (e.g., `>`) and the **Home Text**.
+*   **Site Identity**:
+    *   **Site Title**: The name displayed in the browser tab and header.
+    *   **Logo URL**: Path to your logo image (e.g., `/uploads/2026/01/logo.png`).
+    *   **Footer Text**: Custom text or HTML for the site footer.
+*   **Scroll to Top**:
+    *   Enable a "Back to Top" button and customize its position, shape, and colors.
 
 ---
 
@@ -66,7 +73,43 @@ Navigate to **Site Settings** to configure global options.
 
 ---
 
-## 6. Event Planner (Plugin)
+## 6. Media Library
+
+Navigate to **Media Library** to manage files.
+*   **Upload**: Supports Images (JPG, PNG, GIF, WEBP) and PDFs.
+*   **Manage**: View uploaded files or delete them.
+*   **Usage**: Copy the file URL to use in Posts or Settings.
+*   **Edit**: Click "Edit" to add Alt Text, Titles, and Descriptions for SEO.
+
+---
+
+## 7. User Profile
+
+Click **My Profile** in the sidebar to:
+*   Update your **Display Name** or **Email**.
+*   Change your **Password**.
+*   Upload a **Profile Picture** (Avatar).
+
+---
+
+## 8. Theme Manager
+
+*(Admins Only)*
+Navigate to **Theme Manager** to switch the visual design of your site.
+*   **Activate**: Click to instantly apply a new theme from the `/themes` directory.
+
+---
+
+## 9. Label Editor
+
+*(Admins Only)*
+Navigate to **Label Editor** to customize text strings without coding.
+*   **Key**: The identifier used in the code (e.g., `read_more_btn`).
+*   **Value**: The text you want to display (e.g., "Continue Reading").
+
+---
+
+## 10. Event Planner (Plugin)
 
 *(Coming in Phase 5)*
 

@@ -145,6 +145,7 @@ $media_items = $pdo->query("SELECT * FROM media ORDER BY uploaded_at DESC")->fet
                         <span class="filename"><?php echo htmlspecialchars($item['file_name']); ?></span>
                         
                         <div class="media-actions">
+                            <a href="media-edit.php?id=<?php echo $item['id']; ?>" class="btn" style="padding: 4px 8px; font-size: 0.8em; background-color: #6c757d;">Edit</a>
                             <a href="?delete=<?php echo $item['id']; ?>" class="btn btn-danger" style="padding: 4px 8px; font-size: 0.8em;" onclick="return confirm('Delete this file?');">Delete</a>
                         </div>
                     </div>

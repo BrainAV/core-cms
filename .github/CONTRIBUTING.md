@@ -33,6 +33,7 @@ Thank you for your interest in contributing to **Core CMS**! This guide provides
     *   Ensure `.github/ROADMAP.md` stays in sync with `docs/PROJECT_PLAN.md`.
     *   Update `docs/ADMIN_MANUAL.md` when adding UI features.
     *   Update `CHANGELOG.md` for notable changes.
+    *   Refer to `docs/THEME_BUILDER.md` when creating or modifying themes.
 
 ## Coding Standards
 

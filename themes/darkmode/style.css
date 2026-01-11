@@ -1,0 +1,108 @@
+/* Dark Mode Theme */
+
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1f1f1f;
+    --footer-bg: #000000;
+    --accent-color: #bb86fc;
+    --link-color: #bb86fc;
+    --container-width: 1100px;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a { color: var(--link-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.site-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+}
+.site-logo img { height: 40px; vertical-align: middle; margin-right: 10px; }
+
+/* Navigation */
+.site-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+.site-menu li { position: relative; }
+.site-menu a { color: #fff; }
+.site-menu ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 100;
+}
+.site-menu li:hover > ul { display: block; }
+.site-menu ul li { display: block; }
+.site-menu ul a { display: block; padding: 5px 15px; }
+.site-menu ul a:hover { background: #444; }
+
+/* Main */
+.site-main { flex: 1; padding: 40px 0; }
+
+/* Editor Content */
+.entry-content h1, .entry-content h2, .entry-content h3 { color: #fff; }
+.entry-content pre {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    border: 1px solid #333;
+}
+.entry-content code {
+    background: #333;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+.editor-quote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+    color: #ccc;
+    font-style: italic;
+}
+.editor-image img { max-width: 100%; height: auto; }
+
+/* Footer */
+.site-footer {
+    background-color: var(--footer-bg);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+}

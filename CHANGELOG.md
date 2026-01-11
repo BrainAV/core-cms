@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-01-11
+
+### Added
+- **Site Identity Settings**:
+  - `admin/settings.php`: Added fields for Site Title, Logo URL, and Footer Text.
+  - `templates/header.php`: Updated to use dynamic title and logo.
+  - `templates/footer.php`: Updated to use dynamic footer text.
+  - `docs/SETTINGS.md`: Documentation for global settings.
+- **Marketing Assets**:
+  - `docs/BLOG_POST_ANNOUNCEMENT.md`: Draft blog post for public release.
+  - `docs/SOCIAL_PREVIEW.md`: AI prompt for generating the repo social image.
+- **Media Metadata**:
+  - `admin/media-edit.php`: Interface to edit Alt Text, Title, and Description.
+  - `admin/media.php`: Added "Edit" button to media items.
+  - `db/schema.sql`: Added columns to `media` table.
+- **Editor.js Image Tool**:
+  - `admin/api/upload.php`: API endpoint for handling image uploads from the editor.
+  - `admin/post-edit.php`: Configured Image Tool.
+- **Scroll to Top**:
+  - `admin/settings.php`: Added configuration for position, shape, and color.
+  - `templates/footer.php`: Injected button logic.
+- **User Roles & Management**:
+  - `admin/users.php`, `admin/user-edit.php`: Admin interface to manage users.
+  - Implemented Role-Based Access Control (RBAC) for Admin, Editor, and Subscriber.
+  - Secured sensitive admin pages (`settings.php`, `menus.php`) against non-admins.
+- **Theme System**:
+  - `admin/themes.php`: Manager to switch between active themes.
+  - `includes/functions.php`: Added `get_theme_path()` for dynamic template loading.
+  - `docs/THEMES.md` & `docs/THEME_BUILDER.md`: Documentation for creating themes.
+  - `themes/darkmode/`: Added a sample "Dark Mode" theme to verify the system.
+- **Label Editor**:
+  - `admin/labels.php`: Interface to customize UI text without code changes.
+  - `includes/functions.php`: Added `get_label()` helper.
+- **Menu Enhancements**:
+  - Added manual reordering via sort order inputs.
+  - Implemented "Link by ID" to prevent broken links when slugs change.
+
+### Changed
+- **Admin Dashboard**: Refactored Quick Links into a modern card grid layout.
+- **Content Lists**: Made Post/Page titles clickable for quick frontend preview.
+- **Documentation**: Updated `README.md` and `ADMIN_MANUAL.md` with new features.
+
 ## [0.2.0] - 2026-01-09
 
 ### Added

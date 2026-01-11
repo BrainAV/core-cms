@@ -40,6 +40,52 @@ function update_option($name, $value) {
 }
 
 /**
+ * Delete an option from the database.
+ * 
+ * @param string $name The option name.
+ */
+function delete_option($name) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("DELETE FROM options WHERE option_name = ?");
+    $stmt->execute([$name]);
+}
+
+/**
+ * Get a localized label/text string.
+ * 
+ * @param string $key The label key (e.g., 'read_more').
+ * @param string $default The default text if no override exists.
+ * @return string
+ */
+function get_label($key, $default) {
+    $val = get_option('label_' . $key, null);
+    return ($val !== null) ? $val : $default;
+}
+
+/**
+ * Get the path to the active theme directory.
+ * 
+ * @return string Absolute path to the theme folder (no trailing slash).
+ */
+function get_theme_path() {
+    $theme = get_option('active_theme', 'default');
+    
+    // If default, use the core templates folder
+    if ($theme === 'default' || empty($theme)) {
+        return ROOT_PATH . '/templates';
+    }
+    
+    // Otherwise, check themes directory
+    $custom_path = ROOT_PATH . '/themes/' . $theme;
+    if (is_dir($custom_path)) {
+        return $custom_path;
+    }
+    
+    // Fallback
+    return ROOT_PATH . '/templates';
+}
+
+/**
  * Render a navigation menu by its slug.
  *
  * @param string $slug The menu slug (e.g., 'main-menu').
@@ -64,7 +110,9 @@ function render_menu($slug, $class = 'menu') {
     }
 
     // 2. Get Menu Items
-    $stmt = $pdo->prepare("SELECT * FROM menu_items WHERE menu_id = ? ORDER BY sort_order ASC");
+    // Join with posts table to get dynamic slugs if target_id is set
+    $sql = "SELECT mi.*, p.post_slug FROM menu_items mi LEFT JOIN posts p ON mi.target_id = p.id WHERE mi.menu_id = ? ORDER BY mi.sort_order ASC";
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([$menu['id']]);
     $items = $stmt->fetchAll();
 
@@ -74,6 +122,12 @@ function render_menu($slug, $class = 'menu') {
     $tree = [];
     $ref = [];
     foreach ($items as $d) {
+        // Dynamic URL override
+        if (!empty($d['target_id']) && !empty($d['post_slug'])) {
+            // Assuming BASE_URL is defined in config.php
+            $d['url'] = BASE_URL . '/' . $d['post_slug'];
+        }
+        
         $d['children'] = [];
         $ref[$d['id']] = $d;
     }

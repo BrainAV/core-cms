@@ -69,6 +69,7 @@ CREATE TABLE `menu_items` (
   `url` varchar(255) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `sort_order` int(11) NOT NULL DEFAULT '0',
+  `target_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `parent_id` (`parent_id`)
@@ -128,6 +129,9 @@ CREATE TABLE `media` (
   `file_path` varchar(255) NOT NULL,
   `file_type` varchar(50) NOT NULL,
   `uploaded_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `alt_text` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

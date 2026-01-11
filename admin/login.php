@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $pdo = get_db_connection();
 
             // Prepare a statement to select the user by email.
-            $stmt = $pdo->prepare("SELECT id, user_pass FROM users WHERE user_email = ?");
+            $stmt = $pdo->prepare("SELECT id, user_pass, role FROM users WHERE user_email = ?");
             $stmt->execute([$email]);
 
             // Fetch the user record.
@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user && password_verify($password, $user['user_pass'])) {
                 // Password is correct. Store user ID in the session.
                 $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_role'] = $user['role'];
                 
                 // Regenerate the session ID to prevent session fixation attacks.
                 session_regenerate_id(true);

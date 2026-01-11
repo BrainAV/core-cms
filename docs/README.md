@@ -29,6 +29,8 @@ Detailed design and planning documents for specific modules.
 *   [**Editor Strategy**](EDITOR.md): Block-based editing with Editor.js.
 *   [**Taxonomy System**](CATEGORIES_TAGS.md): Categories and Tags architecture.
 *   [**User Profile System**](PROFILE.md): User settings and avatar management.
+*   [**Label Editor**](LABEL_EDITOR.md): Managing UI text overrides.
+*   [**Theme Builder Guide**](THEME_BUILDER.md): Specification for creating new themes.
 *   [**Deployment Guide**](DEPLOYMENT.md): FTP exclusion lists and server setup.
 *   [**Gemini Prompt Guide**](../.gemini/GEMINI.md): How to use AI assistance for this project.
 *   **Phase 3 Tests**: Verification steps for Routing & Experience.

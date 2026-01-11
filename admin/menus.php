@@ -14,6 +14,12 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Role Check
+if (($_SESSION['user_role'] ?? '') !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+
 $pdo = get_db_connection();
 $message = $_GET['msg'] ?? '';
 

@@ -15,6 +15,12 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Role Check
+if (($_SESSION['user_role'] ?? '') !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+
 $pdo = get_db_connection();
 $menu_id = $_GET['id'] ?? null;
 
@@ -46,8 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_page'])) {
     if ($page) {
         $label = $page['post_title'];
         $url = '/' . $page['post_slug'];
-        $stmt = $pdo->prepare("INSERT INTO menu_items (menu_id, label, url, parent_id, sort_order) VALUES (?, ?, ?, ?, 0)");
-        $stmt->execute([$menu_id, $label, $url, $parent_id]);
+        $target_id = $page['id'];
+        $stmt = $pdo->prepare("INSERT INTO menu_items (menu_id, label, url, parent_id, sort_order, target_id) VALUES (?, ?, ?, ?, 0, ?)");
+        $stmt->execute([$menu_id, $label, $url, $parent_id, $target_id]);
         $message = "Page added successfully.";
     }
 }
@@ -72,6 +79,15 @@ if (isset($_GET['delete_item'])) {
     $stmt->execute([$_GET['delete_item'], $menu_id]);
     header("Location: menu-edit.php?id=$menu_id&msg=deleted");
     exit;
+}
+
+// --- Handle Reorder ---
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_order'])) {
+    foreach ($_POST['order'] as $item_id => $order) {
+        $stmt = $pdo->prepare("UPDATE menu_items SET sort_order = ? WHERE id = ? AND menu_id = ?");
+        $stmt->execute([(int)$order, $item_id, $menu_id]);
+    }
+    $message = "Order updated successfully.";
 }
 
 // Fetch Items
@@ -163,31 +179,41 @@ $pages = $page_stmt->fetchAll();
         <!-- List Items -->
         <div class="card">
             <h3>Menu Items</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th width="50">Order</th>
-                        <th>Label</th>
-                        <th>URL</th>
-                        <th width="100">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($items as $item): ?>
-                    <tr>
-                        <td><?php echo $item['sort_order']; ?></td>
-                        <td><strong><?php echo htmlspecialchars($item['label']); ?></strong></td>
-                        <td><code><?php echo htmlspecialchars($item['url']); ?></code></td>
-                        <td>
-                            <a href="?id=<?php echo $menu_id; ?>&delete_item=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Remove this link?');">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                    <?php if (empty($items)): ?>
-                        <tr><td colspan="4" style="text-align: center; color: #777;">No links yet. Add one above.</td></tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+            <form method="post">
+                <input type="hidden" name="save_order" value="1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="80">Order</th>
+                            <th>Label</th>
+                            <th>URL</th>
+                            <th width="100">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($items as $item): ?>
+                        <tr>
+                            <td>
+                                <input type="number" name="order[<?php echo $item['id']; ?>]" value="<?php echo $item['sort_order']; ?>" style="width: 60px; padding: 5px;">
+                            </td>
+                            <td><strong><?php echo htmlspecialchars($item['label']); ?></strong></td>
+                            <td><code><?php echo htmlspecialchars($item['url']); ?></code></td>
+                            <td>
+                                <a href="?id=<?php echo $menu_id; ?>&delete_item=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Remove this link?');">Delete</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php if (empty($items)): ?>
+                            <tr><td colspan="4" style="text-align: center; color: #777;">No links yet. Add one above.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+                <?php if (!empty($items)): ?>
+                    <div style="margin-top: 15px;">
+                        <button type="submit" class="btn">Save Order</button>
+                    </div>
+                <?php endif; ?>
+            </form>
         </div>
     </div>
 </body>

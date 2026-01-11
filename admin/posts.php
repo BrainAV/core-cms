@@ -61,7 +61,11 @@ $posts = $stmt->fetchAll();
                 <tbody>
                     <?php foreach ($posts as $post): ?>
                     <tr>
-                        <td><strong><?php echo htmlspecialchars($post['post_title']); ?></strong></td>
+                        <td>
+                            <strong>
+                                <a href="<?php echo BASE_URL . '/' . htmlspecialchars($post['post_slug']); ?>" target="_blank" title="View Post"><?php echo htmlspecialchars($post['post_title']); ?></a>
+                            </strong>
+                        </td>
                         <td><?php echo htmlspecialchars($post['display_name'] ?? 'Unknown'); ?></td>
                         <td><span class="status-badge status-<?php echo $post['post_status']; ?>"><?php echo $post['post_status']; ?></span></td>
                         <td><?php echo date('M j, Y', strtotime($post['created_at'])); ?></td>

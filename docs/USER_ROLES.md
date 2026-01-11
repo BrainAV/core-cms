@@ -12,6 +12,7 @@ Core CMS uses a role-based access control (RBAC) system. The `users` table conta
     *   Install/Activate Plugins.
     *   Manage Users (Add/Edit/Delete).
     *   Manage Menus & Themes.
+    *   Manage Labels (UI Text).
     *   All Editor capabilities.
 
 ### ✏️ Editor (`editor`)
@@ -28,7 +29,7 @@ Core CMS uses a role-based access control (RBAC) system. The `users` table conta
     *   Login to the frontend (via Engagement Pack).
     *   Post Comments.
     *   Manage own Profile.
-    *   *No Admin Dashboard access.*
+    *   *No Admin Dashboard access (except Profile).*
 
 ## 3. Plugin Roles (Event Planner)
 

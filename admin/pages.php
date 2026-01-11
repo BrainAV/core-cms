@@ -63,7 +63,9 @@ $pages = $stmt->fetchAll();
                     <?php foreach ($pages as $page): ?>
                     <tr>
                         <td>
-                            <strong><?php echo htmlspecialchars($page['post_title']); ?></strong>
+                            <strong>
+                                <a href="<?php echo BASE_URL . '/' . htmlspecialchars($page['post_slug']); ?>" target="_blank" title="View Page"><?php echo htmlspecialchars($page['post_title']); ?></a>
+                            </strong>
                             <?php if (!empty($page['is_home'])): ?>
                                 <span class="badge-home">HOME</span>
                             <?php endif; ?>
