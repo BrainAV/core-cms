@@ -40,4 +40,4 @@ We've refreshed the Admin Dashboard. The old text links are gone, replaced by a 
 ### 🚀 What's Next?
 With the core experience now robust and customizable, we are officially moving to **Phase 5**. The next major update will introduce the **Event Planner Plugin**, transforming Core CMS into a specialized tool for managing events and bookings.
 
-**View the Changelog** | **Download v0.3.0**
+[**View the Changelog**](https://github.com/BrainAV/core-cms/blob/main/CHANGELOG.md) | **Download v0.3.0**
