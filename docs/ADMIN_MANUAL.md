@@ -109,7 +109,19 @@ Navigate to **Label Editor** to customize text strings without coding.
 
 ---
 
-## 10. Event Planner (Plugin)
+## 10. AI Copilot
+
+*(Requires AI Configuration in Settings)*
+
+The **Admin Copilot** helps you draft content directly in the post editor.
+1.  Go to **Manage Posts** > **Add/Edit**.
+2.  Click the **✨ AI Assist** button above the content editor.
+3.  Type a prompt (e.g., "Write an outline for a blog post about coffee").
+4.  Click **Generate**. The AI will insert formatted blocks (Headers, Lists, Paragraphs) into your post.
+
+---
+
+## 11. Event Planner (Plugin)
 
 *(Coming in Phase 5)*
 
@@ -118,4 +130,4 @@ Navigate to **Label Editor** to customize text strings without coding.
 
 ---
 
-*Last Updated: v0.2.0 (Phase 4 Expansion)*
+*Last Updated: v0.3.0 (Phase 5 AI Integration)*

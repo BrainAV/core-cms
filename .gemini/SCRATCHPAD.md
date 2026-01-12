@@ -5,12 +5,29 @@ Use this file for:
 - Brainstorming logic before writing code.
 - Storing error messages or debug output.
 
-## 🚧 Current Session: Phase 5 (Event Planner)
+## 🚧 Current Session: Phase 5 (AI Integration)
 
-*   [ ] **Step 1:** Create plugin directory structure (`plugins/event-planner`).
-*   [ ] **Step 2:** Create `init.php` and `install.php` for the plugin.
+*   [x] **Step 1:** Dynamic Sitemap (XML).
+*   [x] **Step 2:** Define AI Configuration (Provider Select, API Key, Base URL).
+*   [x] **Step 3:** Create `includes/ai.php` (AI Service with Drivers: Gemini, OpenAI, Local).
+*   [x] **Step 4:** Build "Admin Copilot" (Drafting assistant in Post Editor).
+*   [x] **Fix:** Improved AI response parsing to handle mixed text/JSON output.
 
-## 🧠 Brainstorming / Notes
+## 🧪 AI Testing Plan (Admin Copilot)
+*   [ ] **Test 1: Headers & Structure**
+    *   Prompt: "Write an article with H2 and H3 headers."
+    *   Verify: JSON structure in DB, rendering in Editor.js.
+*   [ ] **Test 2: Lists (Ordered & Unordered)**
+    *   Prompt: "List 5 fruits." and "Steps to tie a shoe."
+    *   Verify: `list` block type, `style` property.
+*   [ ] **Test 3: Long Content (Pagination/Chattiness)**
+    *   Prompt: "Write a long story about bubblegum."
+    *   Verify: Does it duplicate text? Does it break JSON syntax in the middle?
+*   [ ] **Test 4: Links & Formatting**
+    *   Prompt: "Write a paragraph with bold text and a link to google.com."
+    *   Verify: Does it use `<b>` or `**`? Does it use `<a>` or ``?
+
+## � Brainstorming / Notes
 
 *   **Editor Strategy:** User likes WP Block Editor. For MVP, stick to HTML `<textarea>`. In Phase 4, investigate **Editor.js** to store content as JSON blocks.
 *   **User Management:**

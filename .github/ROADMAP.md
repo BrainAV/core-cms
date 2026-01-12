@@ -34,18 +34,20 @@ This document tracks the active development status of Core CMS.
 - [x] Label Editor.
 - [x] Scroll to Top (Settings).
 - [x] User Profile / Control Panel.
+- [x] Dynamic Sitemap (XML).
 
-## 🔴 Phase 5: Event Planner Plugin (Side Quest)
+## 🔴 Phase 5: AI Integration (Core Intelligence)
+- [x] **Admin Copilot**: Content generation helper.
+- [x] **AI Refinement**: Improve JSON parsing, handle lists/headers, and reduce hallucinations.
+- [ ] **Frontend Chat**: Visitor Q&A Widget.
+- [ ] **Generative UI**: AI-created layouts (Experimental).
+
+## 🟣 Phase 6: Plugins & Expansion
 - [ ] Plugin Architecture (Hooks).
 - [ ] Event Database Table.
 - [ ] Admin Event Management (CRUD).
 - [ ] Frontend Event Display.
-
-## 🟣 Phase 6: AI Integration
-- [ ] **Frontend Chat**: Visitor Q&A Widget.
 - [ ] **Event Agent**: AI Booking via Function Calling.
-- [ ] **Admin Copilot**: Content generation helper.
-- [ ] **Generative UI**: AI-created layouts (Experimental).
 
 ## 🔵 Phase 7: Commerce, IoT & Plugins
 - [ ] **Store / E-commerce**:

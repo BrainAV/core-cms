@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Themes**: Added "Light and Dark Mode" theme (`themes/darklightmodes/`) with auto-detection and toggle.
+- **Dynamic Sitemap**:
+  - `sitemap.php`: XML generator for SEO.
+  - `.htaccess`: Added route for `/sitemap.xml`.
+  - `docs/SITEMAP.md`: Documentation.
+- **AI Integration (Phase 5)**:
+  - `admin/settings.php`: Added AI Configuration (Provider, Key, Model).
+  - `includes/ai.php`: `AIService` with drivers for Gemini, OpenAI, and Local LLMs.
+  - `admin/api/ai.php`: API endpoint for Admin Copilot.
+  - `admin/post-edit.php`: Added "AI Assist" button and modal to the editor.
+  - `docs/AI_INTEGRATION.md`: Architecture documentation.
+
+### Changed
+- **Admin Dashboard**: Refactored Quick Links into a modern card grid layout with icons.
+- **Admin Lists**: Made Post and Page titles clickable in the manager to open the frontend view.
+- **Settings**: Upgraded Footer Text field to use Editor.js (Block Editor) for rich content.
+- **Rendering**: Updated `render_blocks()` to support raw HTML strings (fixing Label Editor overrides).
+- **Admin UI**: Removed sticky footer from admin panel to resolve layout issues.
+
 ## [0.3.0] - 2026-01-11
 
 ### Added

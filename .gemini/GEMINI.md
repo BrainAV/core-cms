@@ -37,7 +37,7 @@ This file is your **Command Center**. It contains the "Magic Spells" (Prompts) t
 > "You are an expert PHP developer building a lightweight, modular CMS called 'Core CMS'.
 > **Architecture:** PHP 8.3, MySQL (PDO), Procedural/Simple OOP.
 > **Structure:** Core system + Plugins (Event Planner is a plugin).
-> **Current Goal:** We are working on Phase 2 (Admin MVP).
+> **Current Goal:** We are working on Phase 5 (AI Integration).
 > **Style:** Secure, clean, and well-commented code."
 ---
 
@@ -79,13 +79,23 @@ This file is your **Command Center**. It contains the "Magic Spells" (Prompts) t
 
 ---
 
-## 🔌 Phase 5: Event Planner Plugin
+## 🧠 Phase 5: AI Integration (Core Intelligence)
+
+### 1. AI Foundation
+> "Create `includes/ai.php`. It should define an `AIService` class that uses a Factory pattern to load drivers for different providers (Gemini, OpenAI, Local/Ollama). It needs to handle API Keys and Base URLs (for local)."
+
+### 2. Admin Copilot
+> "Update `admin/post-edit.php` to include an 'AI Assist' button next to the editor. Use JavaScript to send the current title/content to an API endpoint (`admin/api/ai.php`) and insert the generated text into Editor.js."
+
+---
+
+## 🔌 Phase 6: Plugins & Expansion
 
 ### 1. Plugin System
 > "I want to build the Event Planner as a plugin. Create a folder `plugins/event-planner`. Create a file `plugins/event-planner/init.php` that defines a function `register_event_routes()`."
 
 ### 2. Event Management
-> "Create a CRUD interface for Events in `admin/events.php`. I need to be able to Add, Edit, and Delete events from the `events` table."
+> "Create a CRUD interface for Events in `plugins/event-planner/admin/events.php`. I need to be able to Add, Edit, and Delete events from the `events` table."
 
 ---
 

@@ -82,20 +82,21 @@
 * [x] **Scroll to Top:** Configurable button (Position, Style, Color) to scroll to top.
 * [x] **Label Editor:** Customize UI text strings.
 * [x] **Menu Enhancements:** Link by ID and manual reordering.
+* [ ] **Dynamic Sitemap:** Auto-generate sitemap.xml for SEO.
 
-### Phase 5: The "Side Quest" (Event Planner Plugin)
+### Phase 5: AI Integration (Core Intelligence)
+
+* [x] **Admin Copilot:** An admin-side helper to draft posts or summarize data.
+* [ ] **Frontend Assistant:** A chat widget that uses the configured AI Provider (Gemini, OpenAI, Local) to answer visitor questions.
+* [ ] **Generative UI (Experimental):** An API endpoint allowing AI to generate and save HTML/CSS layouts to a `templates/custom` folder ("Coding itself").
+
+### Phase 6: Plugins & Expansion (Event Planner)
 
 * [ ] **Plugin Architecture:** Create a simple hook system in `/includes` to allow plugins to inject content.
 * [ ] **Event Data:** Build the `events` table and the admin interface to manage them within `/plugins/event-planner`.
 * [ ] **Frontend Display:** Create a specific page or shortcode to list upcoming events.
-* [ ] **Documentation:** Add "Event Management" section to `docs/ADMIN_MANUAL.md`.
-
-### Phase 6: AI Integration (The Future)
-
-* [ ] **Frontend Assistant:** A chat widget plugin that uses the Gemini API to answer visitor questions.
 * [ ] **Event Agent:** Allow the AI Assistant to query the `events` table and "book" spots via function calling.
-* [ ] **Admin Copilot:** An admin-side helper to draft posts or summarize data.
-* [ ] **Generative UI (Experimental):** An API endpoint allowing AI to generate and save HTML/CSS layouts to a `templates/custom` folder ("Coding itself").
+* [ ] **Documentation:** Add "Event Management" section to `docs/ADMIN_MANUAL.md`.
 
 ### Phase 7: Commerce, IoT & Plugins
 * [ ] **Contact Form:** Simple form builder with email notifications.

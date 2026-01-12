@@ -30,6 +30,7 @@ Detailed design and planning documents for specific modules.
 *   [**Taxonomy System**](CATEGORIES_TAGS.md): Categories and Tags architecture.
 *   [**User Profile System**](PROFILE.md): User settings and avatar management.
 *   [**Label Editor**](LABEL_EDITOR.md): Managing UI text overrides.
+*   [**AI Integration Strategy**](AI_INTEGRATION.md): Architecture for multi-provider AI support.
 *   [**Theme Builder Guide**](THEME_BUILDER.md): Specification for creating new themes.
 *   [**Deployment Guide**](DEPLOYMENT.md): FTP exclusion lists and server setup.
 *   [**Gemini Prompt Guide**](../.gemini/GEMINI.md): How to use AI assistance for this project.

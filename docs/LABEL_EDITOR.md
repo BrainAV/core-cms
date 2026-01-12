@@ -41,3 +41,32 @@ function get_label($key, $default)
 ```php
 <button><?php echo get_label('contact_submit_btn', 'Submit'); ?></button>
 ```
+
+## 5. Scope & Limitations
+### Can I use labels inside the Block Editor (Editor.js)? 
+No. The Label Editor is designed for PHP Templates (the structural parts of your theme like headers, footers, and layout buttons).
+* Content (Editor.js): This is static text saved to the database for a specific post. 
+* Interface (Labels): This is dynamic text loaded by the theme files.
+If you need a button inside a blog post, use the Raw HTML block in Editor.js.
+
+## 6. The Override Pattern (Best Practice)
+
+A powerful way to use the Label Editor is to combine it with default settings or hardcoded values. This creates a "Hierarchy of Needs" for your text.
+
+### Example: Footer Text (footer_text) and (site_footer_text)
+In `templates/footer.php`, we can check for a label first, and if it doesn't exist, fall back to the value from **Site Settings**.
+
+```php
+// 1. Get the default from Site Settings (or a hardcoded string)
+$default_text = get_option('site_footer_text', '&copy; 2026 Core CMS');
+
+// 2. Check if a Label exists to override it
+// If 'footer_text' label exists, it wins. If not, $default_text is used.
+$footer_text = get_label('footer_text', $default_text);
+
+echo $footer_text;
+```
+
+### Why is this powerful?
+1.  **Safety**: You can experiment with changing text in the Label Editor. If you delete the label, the site instantly reverts to the safe default.
+2.  **Separation**: Keep structural defaults in Settings/Code, and use Labels for specific tweaks or translations.

@@ -1,9 +1,10 @@
 <?php
 /**
+ * Theme: Dark/Light Mode
  * Template: Footer
  */
 // Get Footer Text: Check Label Editor first, fallback to Site Settings
-$settings_text = get_option('site_footer_text', '&copy; ' . date('Y') . ' Core CMS. Built with PHP & Passion.');
+$settings_text = get_option('site_footer_text', '&copy; ' . date('Y') . ' Core CMS.');
 $footer_text = get_label('footer_text', $settings_text);
 ?>
     </div> <!-- End .container -->
@@ -26,7 +27,7 @@ if (get_option('scroll_top_enabled', '0') === '1') {
     $pos_css = match($st_pos) {
         'bottom-left' => 'bottom: 20px; left: 20px;',
         'bottom-center' => 'bottom: 20px; left: 50%; transform: translateX(-50%);',
-        default => 'bottom: 20px; right: 20px;', // bottom-right
+        default => 'bottom: 20px; right: 20px;',
     };
 
     $radius = match($st_shape) {
@@ -40,12 +41,8 @@ if (get_option('scroll_top_enabled', '0') === '1') {
 </button>
 
 <script>
-    // Get the button
     var mybutton = document.getElementById("scrollToTopBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
-
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
@@ -53,13 +50,28 @@ if (get_option('scroll_top_enabled', '0') === '1') {
             mybutton.style.display = "none";
         }
     }
-
-    // When the user clicks on the button, scroll to the top of the document
     mybutton.onclick = function() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     };
 </script>
 <?php } ?>
+
+<script>
+    // Theme Toggle Logic
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+        let currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        // If no attribute set yet, determine what the browser is currently showing
+        if (!currentTheme) {
+             currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+</script>
 
 </body>
 </html>

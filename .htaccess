@@ -10,7 +10,10 @@ RewriteBase /
 # 1. Security: Prevent viewing .htaccess or .git files
 RewriteRule ^(\.htaccess|\.git) - [F]
 
-# 2. The Routing Logic (The Catch-All)
+# 2. Sitemap
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# 3. The Routing Logic (The Catch-All)
 # If the request is NOT a real file...
 RewriteCond %{REQUEST_FILENAME} !-f
 # ...and NOT a real directory...

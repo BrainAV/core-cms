@@ -23,7 +23,8 @@ $post = [
     'post_content' => '',
     'post_status' => 'publish',
     'post_type' => $_GET['type'] ?? 'post',
-    'is_home' => 0
+    'is_home' => 0,
+    'created_at' => date('Y-m-d H:i:s')
 ];
 
 // --- Handle POST Submission ---
@@ -35,11 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['post_status'];
     $type = $_POST['post_type'] ?? 'post';
     $is_home = isset($_POST['is_home']) ? 1 : 0;
+    $created_at = $_POST['created_at'];
     $author_id = $_SESSION['user_id'];
 
     // Auto-generate slug if empty
     if (empty($slug)) {
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
+    }
+
+    // Ensure Slug Uniqueness
+    $base_slug = $slug;
+    $counter = 1;
+    while (true) {
+        if ($id) {
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE post_slug = ? AND id != ?");
+            $stmt->execute([$slug, $id]);
+        } else {
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE post_slug = ?");
+            $stmt->execute([$slug]);
+        }
+
+        if ($stmt->fetchColumn() > 0) {
+            $slug = $base_slug . '-' . $counter;
+            $counter++;
+        } else {
+            break;
+        }
     }
 
     if (empty($title)) {
@@ -55,12 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($id) {
                 // UPDATE existing post
-                $stmt = $pdo->prepare("UPDATE posts SET post_title = ?, post_slug = ?, post_content = ?, post_status = ?, post_type = ?, is_home = ? WHERE id = ?");
-                $stmt->execute([$title, $slug, $content, $status, $type, $is_home, $id]);
+                $stmt = $pdo->prepare("UPDATE posts SET post_title = ?, post_slug = ?, post_content = ?, post_status = ?, post_type = ?, is_home = ?, created_at = ? WHERE id = ?");
+                $stmt->execute([$title, $slug, $content, $status, $type, $is_home, $created_at, $id]);
             } else {
                 // INSERT new post
-                $stmt = $pdo->prepare("INSERT INTO posts (author_id, post_title, post_slug, post_content, post_status, post_type, is_home) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$author_id, $title, $slug, $content, $status, $type, $is_home]);
+                $stmt = $pdo->prepare("INSERT INTO posts (author_id, post_title, post_slug, post_content, post_status, post_type, is_home, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$author_id, $title, $slug, $content, $status, $type, $is_home, $created_at]);
                 $id = $pdo->lastInsertId();
             }
 
@@ -211,7 +233,12 @@ if (!empty($post['post_content'])) {
                 </div>
 
                 <div class="form-group">
-                    <label>Content</label>
+                    <label>
+                        Content 
+                        <?php if (get_option('ai_enabled', '0') === '1'): ?>
+                        <button type="button" id="ai-open-btn" style="background:none; border:none; color:#007bff; cursor:pointer; font-size:0.9em; font-weight:bold;">✨ AI Assist</button>
+                        <?php endif; ?>
+                    </label>
                     <div id="editorjs"></div>
                     <input type="hidden" name="post_content" id="post_content_input">
                 </div>
@@ -223,6 +250,11 @@ if (!empty($post['post_content'])) {
                         <option value="draft" <?php echo $post['post_status'] === 'draft' ? 'selected' : ''; ?>>Draft</option>
                         <option value="archived" <?php echo $post['post_status'] === 'archived' ? 'selected' : ''; ?>>Archived</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="created_at">Publish Date</label>
+                    <input type="datetime-local" id="created_at" name="created_at" value="<?php echo date('Y-m-d\TH:i', strtotime($post['created_at'])); ?>">
                 </div>
 
                 <div class="form-group">
@@ -258,6 +290,22 @@ if (!empty($post['post_content'])) {
             </form>
         </div>
     </div>
+
+    <?php if (get_option('ai_enabled', '0') === '1'): ?>
+    <!-- AI Modal -->
+    <div id="ai-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; width:90%; max-width:500px; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+            <h3 style="margin-top:0;">🤖 Admin Copilot</h3>
+            <p style="font-size:0.9em; color:#666;">Ask AI to draft content, generate an outline, or fix grammar.</p>
+            <textarea id="ai-prompt" style="width:100%; height:100px; padding:10px; border:1px solid #ccc; border-radius:4px; font-family:inherit; margin-bottom:15px; box-sizing:border-box;" placeholder="e.g. Write an intro paragraph about the benefits of meditation..."></textarea>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button type="button" class="btn" style="background-color:#6c757d;" onclick="document.getElementById('ai-modal').style.display='none'">Cancel</button>
+                <button type="button" class="btn" id="ai-generate-btn">Generate</button>
+            </div>
+            <div id="ai-loading" style="display:none; margin-top:10px; color:#007bff; font-weight:bold;">✨ Thinking...</div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <!-- Editor.js & Plugins -->
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
@@ -302,6 +350,58 @@ if (!empty($post['post_content'])) {
                 console.log('Saving failed: ', error);
             });
         });
+
+        // AI Copilot Logic
+        const aiOpenBtn = document.getElementById('ai-open-btn');
+        if (aiOpenBtn) {
+            aiOpenBtn.addEventListener('click', () => {
+                document.getElementById('ai-modal').style.display = 'flex';
+                document.getElementById('ai-prompt').focus();
+            });
+
+            document.getElementById('ai-generate-btn').addEventListener('click', () => {
+                const prompt = document.getElementById('ai-prompt').value;
+                const loading = document.getElementById('ai-loading');
+                
+                if(!prompt) return;
+                
+                loading.style.display = 'block';
+                
+                fetch('api/ai.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({prompt: prompt})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    loading.style.display = 'none';
+                    if(data.success) {
+                    try {
+                        // Try to parse the AI response as JSON blocks
+                        const blocks = JSON.parse(data.text);
+                        if (Array.isArray(blocks)) {
+                            blocks.forEach(block => {
+                                editor.blocks.insert(block.type, block.data);
+                            });
+                        } else {
+                            editor.blocks.insert('paragraph', {text: data.text});
+                        }
+                    } catch (e) {
+                        // Fallback: Insert as plain text if JSON parsing fails
+                        editor.blocks.insert('paragraph', {text: data.text});
+                    }
+                        document.getElementById('ai-modal').style.display = 'none';
+                        document.getElementById('ai-prompt').value = '';
+                    } else {
+                        alert('AI Error: ' + data.error);
+                    }
+                })
+                .catch(err => {
+                    loading.style.display = 'none';
+                    alert('Network Error');
+                });
+            });
+        }
     </script>
 </body>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

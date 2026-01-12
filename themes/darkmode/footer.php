@@ -10,7 +10,7 @@ $footer_text = get_option('site_footer_text', '&copy; ' . date('Y') . ' Core CMS
 
 <footer class="site-footer">
     <div class="container">
-        <p><?php echo $footer_text; ?></p>
+        <?php echo render_blocks($footer_text); ?>
     </div>
 </footer>
 

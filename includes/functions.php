@@ -198,7 +198,8 @@ function render_blocks($json_string) {
 
     // Fallback for legacy content (not JSON)
     if (json_last_error() !== JSON_ERROR_NONE || !isset($data['blocks'])) {
-        return nl2br(htmlspecialchars($json_string));
+        // Return raw content to allow HTML overrides (Label Editor) and legacy posts.
+        return $json_string;
     }
 
     $html = '';

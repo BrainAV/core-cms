@@ -16,6 +16,8 @@ A lightweight, modular Content Management System built with PHP and MySQL. Desig
 *   **Role-Based Access**: Granular permissions for Admins, Editors, and Subscribers.
 *   **Theme System**: Switchable designs with a custom Theme Manager.
 *   **Secure**: Built with PDO, prepared statements, and modern password hashing.
+*   **Site Identity**: Manage branding (Logo, Title) without code.
+*   **Label Editor**: Customize UI text strings for localization or branding.
 *   **SEO Friendly**: Built-in routing for pretty URLs.
 *   **Dynamic Menus**: Manage navigation links directly from the admin dashboard.
 
