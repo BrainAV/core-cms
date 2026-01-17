@@ -4,3 +4,4 @@ config/db_creds.php
 uploads/*
 !uploads/.gitkeep
 sync.ffs_db 
+workspace/*
