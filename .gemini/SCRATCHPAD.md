@@ -12,6 +12,16 @@ Use this file for:
 *   [x] **Step 3:** Create `includes/ai.php` (AI Service with Drivers: Gemini, OpenAI, Local).
 *   [x] **Step 4:** Build "Admin Copilot" (Drafting assistant in Post Editor).
 *   [x] **Fix:** Improved AI response parsing to handle mixed text/JSON output.
+*   [x] **Task:** Port `BrainAV.ca` to `themes/brainav/` (Header, Footer, Assets).
+*   [x] **Task:** Editor.js Enhancement Plan (Gutenberg-like features).
+    *   [x] **Subtask:** Implement Alignment (Left/Center/Right) for blocks.
+    *   [x] **Subtask:** Implement Multi-column layouts.
+    *   [x] **Subtask:** Update PHP renderer and CSS for new blocks.
+    *   [x] **Subtask:** Fix nested block support (Circular reference & Alignment).
+
+## 🚧 Next Up: Phase 6 (Plugin Architecture)
+*   [ ] Create Hook/Event system in `/includes`.
+*   [ ] Refactor Event Planner to use the new architecture.
 
 ## 🧪 AI Testing Plan (Admin Copilot)
 *   [ ] **Test 1: Headers & Structure**

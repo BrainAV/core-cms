@@ -82,9 +82,9 @@
 * [x] **Scroll to Top:** Configurable button (Position, Style, Color) to scroll to top.
 * [x] **Label Editor:** Customize UI text strings.
 * [x] **Menu Enhancements:** Link by ID and manual reordering.
-* [ ] **Dynamic Sitemap:** Auto-generate sitemap.xml for SEO.
+* [x] **Dynamic Sitemap:** Auto-generate sitemap.xml for SEO.
 
-### Phase 5: AI Integration (Core Intelligence)
+### Phase 5: AI Integration (Corex Intelligence)
 
 * [x] **Admin Copilot:** An admin-side helper to draft posts or summarize data.
 * [ ] **Frontend Assistant:** A chat widget that uses the configured AI Provider (Gemini, OpenAI, Local) to answer visitor questions.

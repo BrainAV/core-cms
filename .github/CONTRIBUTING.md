@@ -6,6 +6,7 @@ Thank you for your interest in contributing to **Core CMS**! This guide provides
 
 *   **Lightweight Core**: The base system must remain fast and bloat-free.
 *   **Modular Growth**: All non-core features (like the Event Planner) must be built as **Plugins**.
+*   **Rich Editing Experience**: The core uses **Editor.js** for block-based content management (The "Gutenberg Path").
 *   **Security First**: Strict adherence to PDO prepared statements and input sanitization.
 
 ## Tech Stack
@@ -34,6 +35,7 @@ Thank you for your interest in contributing to **Core CMS**! This guide provides
     *   Update `docs/ADMIN_MANUAL.md` when adding UI features.
     *   Update `CHANGELOG.md` for notable changes.
     *   Refer to `docs/THEME_BUILDER.md` when creating or modifying themes.
+    *   Refer to `docs/EDITOR.md` for guidelines on block-based editing (The Gutenberg Quest).
 
 ## Coding Standards
 
@@ -72,4 +74,4 @@ Follow Conventional Commits:
 
 ---
 
-*Last Updated: Phase 2 (Admin MVP)*
+*Last Updated: Phase 5 (AI & Editor Enhancements)*

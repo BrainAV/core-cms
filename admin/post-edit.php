@@ -316,20 +316,108 @@ if (!empty($post['post_content'])) {
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-text-alignment-blocktune@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@calumk/editorjs-columns@latest"></script>
 
     <script>
         // Safely define tools to prevent crashes if a CDN fails
         const tools = {};
-        if (typeof Header !== 'undefined') tools.header = { class: Header, inlineToolbar: true, config: { placeholder: 'Header' } };
+        
+        // 1. Alignment Block Tune
+        if (typeof AlignmentBlockTune !== 'undefined') {
+            tools.alignment = {
+                class: AlignmentBlockTune,
+                config: {
+                    default: 'left',
+                    blocks: {
+                        header: 'left',
+                        paragraph: 'left'
+                    }
+                },
+            };
+        }
+
+        // 2. Main Tools
+        if (typeof Header !== 'undefined') {
+            tools.header = { 
+                class: Header, 
+                inlineToolbar: true, 
+                tunes: ['alignment'],
+                config: { placeholder: 'Header' } 
+            };
+        }
+
+        if (typeof Paragraph !== 'undefined') {
+            tools.paragraph = {
+                class: Paragraph,
+                inlineToolbar: true,
+                tunes: ['alignment']
+            };
+        }
+
         if (typeof List !== 'undefined') tools.list = { class: List, inlineToolbar: true };
         if (typeof Quote !== 'undefined') tools.quote = { class: Quote, inlineToolbar: true };
         if (typeof Delimiter !== 'undefined') tools.delimiter = Delimiter;
         if (typeof RawTool !== 'undefined') tools.raw = RawTool;
         if (typeof CodeTool !== 'undefined') tools.code = CodeTool;
+        
         if (typeof ImageTool !== 'undefined') {
             tools.image = {
                 class: ImageTool,
                 config: { endpoints: { byFile: 'api/upload.php' } }
+            };
+        }
+        
+        // 3. Columns Internal Tools (A separate object to avoid circular references)
+        const columnTools = {};
+        
+        // Add Alignment to columnTools so nested blocks can find it
+        if (typeof AlignmentBlockTune !== 'undefined') {
+            columnTools.alignment = {
+                class: AlignmentBlockTune,
+                config: {
+                    default: 'left',
+                    blocks: {
+                        header: 'left',
+                        paragraph: 'left'
+                    }
+                },
+            };
+        }
+
+        if (typeof Header !== 'undefined') {
+            columnTools.header = {
+                class: Header,
+                inlineToolbar: true,
+                tunes: ['alignment'],
+                config: { placeholder: 'Column Header' }
+            };
+        }
+        if (typeof List !== 'undefined') columnTools.list = List;
+        if (typeof ImageTool !== 'undefined') {
+            columnTools.image = {
+                class: ImageTool,
+                config: { endpoints: { byFile: 'api/upload.php' } }
+            };
+        }
+        // Use the explicit Paragraph class for columns too and apply alignment tunes
+        if (typeof Paragraph !== 'undefined') {
+            columnTools.paragraph = {
+                class: Paragraph,
+                inlineToolbar: true,
+                tunes: ['alignment']
+            };
+        }
+
+        // 4. Register Columns Tool
+        if (typeof editorjsColumns !== 'undefined') {
+            tools.columns = {
+                class: editorjsColumns,
+                config: {
+                    EditorJsLibrary: EditorJS,
+                    tools: columnTools
+                }
             };
         }
 

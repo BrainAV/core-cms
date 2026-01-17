@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-01-17
+
 ### Added
 - **Themes**: Added "Light and Dark Mode" theme (`themes/darklightmodes/`) with auto-detection and toggle.
 - **Dynamic Sitemap**:
@@ -19,6 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `admin/api/ai.php`: API endpoint for Admin Copilot.
   - `admin/post-edit.php`: Added "AI Assist" button and modal to the editor.
   - `docs/AI_INTEGRATION.md`: Architecture documentation.
+- **Editor Enhancements (Gutenberg-Quest)**:
+  - Added block alignment support (Left, Center, Right) for improved text flow.
+  - Added responsive multi-column layout support (Up to 3 columns) with nested blocks.
+  - Updated PHP renderer to handle recursive content and Alignment Block Tunes.
+  - Added `docs/EDITOR.md` roadmap to track block editor evolution.
+  - **Fixed**: Circular reference crash in Editor.js registration.
+  - **Fixed**: Nested block alignment; alignment tunes now work correctly inside column blocks.
+  - **Fixed**: PHP variable collision in `render_blocks` causing erratic rendering.
 
 ### Changed
 - **Admin Dashboard**: Refactored Quick Links into a modern card grid layout with icons.
@@ -26,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Settings**: Upgraded Footer Text field to use Editor.js (Block Editor) for rich content.
 - **Rendering**: Updated `render_blocks()` to support raw HTML strings (fixing Label Editor overrides).
 - **Admin UI**: Removed sticky footer from admin panel to resolve layout issues.
+
 
 ## [0.3.0] - 2026-01-11
 

@@ -10,6 +10,7 @@ Create a new folder in `themes/` (e.g., `themes/my-new-theme/`).
 *   `footer.php`
 *   `404.php`
 *   `style.css` (or `assets/css/style.css`)
+*   `main.js` (Optional, for theme-specific interactivity)
 
 ## 2. Required Files & Logic
 
@@ -40,6 +41,10 @@ Must handle the HTML head and opening body tags.
     ```php
     if (function_exists('render_breadcrumbs')) render_breadcrumbs($page_title ?? '');
     ```
+
+**JavaScript Note:**
+If your theme uses JavaScript (e.g., for mobile menus), include it before the closing `</body>` tag in `footer.php`:
+`<script src="<?php echo BASE_URL; ?>/themes/my-new-theme/main.js"></script>`
 
 ### `footer.php`
 Must handle the closing tags.

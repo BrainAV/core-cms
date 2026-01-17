@@ -194,39 +194,47 @@ function render_breadcrumbs($current_title = '') {
  * @return string HTML output.
  */
 function render_blocks($json_string) {
-    $data = json_decode($json_string, true);
+    $data = is_array($json_string) ? $json_string : json_decode($json_string, true);
 
     // Fallback for legacy content (not JSON)
     if (json_last_error() !== JSON_ERROR_NONE || !isset($data['blocks'])) {
         // Return raw content to allow HTML overrides (Label Editor) and legacy posts.
-        return $json_string;
+        return (string)$json_string;
     }
 
     $html = '';
     foreach ($data['blocks'] as $block) {
-        switch ($block['type']) {
+        $type = $block['type'] ?? '';
+        $block_data = $block['data'] ?? [];
+        $tunes = $block['tunes'] ?? [];
+        
+        // Extract Alignment
+        $alignment = $tunes['alignment']['alignment'] ?? 'left';
+        $align_class = ($alignment !== 'left') ? " text-{$alignment}" : '';
+
+        switch ($type) {
             case 'header':
-                $level = $block['data']['level'] ?? 2;
-                $text = $block['data']['text'];
-                $html .= "<h{$level}>{$text}</h{$level}>";
+                $level = $block_data['level'] ?? 2;
+                $text = $block_data['text'] ?? '';
+                $html .= "<h{$level} class='{$align_class}'>{$text}</h{$level}>";
                 break;
             case 'paragraph':
-                $text = $block['data']['text'];
-                $html .= "<p>{$text}</p>";
+                $text = $block_data['text'] ?? '';
+                $html .= "<p class='{$align_class}'>{$text}</p>";
                 break;
             case 'list':
-                $style = ($block['data']['style'] ?? 'unordered') === 'ordered' ? 'ol' : 'ul';
-                $items = $block['data']['items'] ?? [];
-                $html .= "<{$style}>";
+                $style = ($block_data['style'] ?? 'unordered') === 'ordered' ? 'ol' : 'ul';
+                $items = $block_data['items'] ?? [];
+                $html .= "<{$style} class='{$align_class}'>";
                 foreach ($items as $item) {
                     $html .= "<li>{$item}</li>";
                 }
                 $html .= "</{$style}>";
                 break;
             case 'quote':
-                $text = $block['data']['text'];
-                $caption = $block['data']['caption'] ?? '';
-                $html .= "<blockquote class='editor-quote'>{$text}";
+                $text = $block_data['text'] ?? '';
+                $caption = $block_data['caption'] ?? '';
+                $html .= "<blockquote class='editor-quote {$align_class}'>{$text}";
                 if ($caption) $html .= "<cite>{$caption}</cite>";
                 $html .= "</blockquote>";
                 break;
@@ -234,19 +242,30 @@ function render_blocks($json_string) {
                 $html .= "<hr class='editor-delimiter'>";
                 break;
             case 'raw':
-                $html .= $block['data']['html'];
+                $html .= $block_data['html'] ?? '';
                 break;
             case 'image':
-                $url = $block['data']['file']['url'] ?? '';
-                $caption = $block['data']['caption'] ?? '';
-                $html .= "<figure class='editor-image'>";
+                $url = $block_data['file']['url'] ?? '';
+                $caption = $block_data['caption'] ?? '';
+                $html .= "<figure class='editor-image {$align_class}'>";
                 $html .= "<img src='{$url}' alt='{$caption}'>";
                 if ($caption) $html .= "<figcaption>{$caption}</figcaption>";
                 $html .= "</figure>";
                 break;
             case 'code':
-                $code = htmlspecialchars($block['data']['code']);
+                $code = htmlspecialchars($block_data['code'] ?? '');
                 $html .= "<pre><code>{$code}</code></pre>";
+                break;
+            case 'columns':
+                $cols = $block_data['cols'] ?? [];
+                $count = count($cols);
+                $html .= "<div class='editor-columns editor-columns--{$count}'>";
+                foreach ($cols as $col) {
+                    $html .= "<div class='editor-column'>";
+                    $html .= render_blocks(['blocks' => $col['blocks'] ?? []]);
+                    $html .= "</div>";
+                }
+                $html .= "</div>";
                 break;
             default:
                 // Ignore unknown blocks

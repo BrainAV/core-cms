@@ -12,16 +12,21 @@ Core CMS supports switching between different visual themes.
 4.  Click **Activate** to switch the site's design instantly.
 
 ## 3. Creating a Theme
-To create a new theme:
+To create a new theme, refer to the [**Theme Builder Guide**](THEME_BUILDER.md) for detailed specifications.
 
-1.  Create a folder in `/themes/` (e.g., `/themes/dark-mode`).
-2.  Create the required files inside that folder:
-    *   `header.php`
-    *   `footer.php`
-    *   `404.php`
-3.  (Optional) Add custom CSS/JS assets within your theme folder.
+**Quick Start:**
+1.  Create a folder in `/themes/` (e.g., `/themes/brainav`).
+2.  Create the required files: `header.php`, `footer.php`, `404.php`.
+3.  Add your assets: `style.css`, `main.js`, images.
 
-## 4. How it Works
+## 4. Theme Structure Example (BrainAV)
+The `BrainAV` theme demonstrates a complex setup:
+*   **`header.php`**: Contains the HTML `<head>`, Navigation, and a conditional "Hero" section that only appears on the Homepage (`$post['is_home']`).
+*   **`footer.php`**: Contains the Footer, Scroll-to-Top logic, and script includes.
+*   **`style.css`**: Theme-specific styles.
+*   **`main.js`**: Theme-specific interactivity (Mobile menu, Scroll effects).
+
+## 5. How it Works
 The system uses the `active_theme` option in the database.
 
 *   **Logic**: `includes/functions.php` -> `get_theme_path()`.

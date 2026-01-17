@@ -36,13 +36,21 @@ This document tracks the active development status of Core CMS.
 - [x] User Profile / Control Panel.
 - [x] Dynamic Sitemap (XML).
 
-## 🔴 Phase 5: AI Integration (Core Intelligence)
+## ✨ Editor Side Quest (The Gutenberg Path)
+- [x] **Base Blocks**: H1-H6, Lists, Quotes, Code, Raw HTML.
+- [x] **Media**: Image uploads with caption support.
+- [x] **Layout**: Multi-column responsive grids.
+- [x] **Flow**: Block Alignment (Left, Center, Right).
+- [ ] **Style**: Group/Container blocks with backgrounds.
+- [ ] **Data**: Structured Table blocks.
+
+## ✅ Phase 5: AI Integration (Core Intelligence)
 - [x] **Admin Copilot**: Content generation helper.
 - [x] **AI Refinement**: Improve JSON parsing, handle lists/headers, and reduce hallucinations.
 - [ ] **Frontend Chat**: Visitor Q&A Widget.
 - [ ] **Generative UI**: AI-created layouts (Experimental).
 
-## 🟣 Phase 6: Plugins & Expansion
+## 🟢 Phase 6: Plugins & Expansion
 - [ ] Plugin Architecture (Hooks).
 - [ ] Event Database Table.
 - [ ] Admin Event Management (CRUD).

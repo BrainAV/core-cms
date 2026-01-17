@@ -182,6 +182,29 @@ a:hover { color: var(--color-gold); }
     margin-top: 5px;
 }
 
+/* Alignment Utilities */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Layout: Columns */
+.editor-columns {
+    display: grid;
+    gap: 20px;
+    margin: 1.5em 0;
+}
+
+@media (min-width: 768px) {
+    .editor-columns--2 { grid-template-columns: 1fr 1fr; }
+    .editor-columns--3 { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+@media (max-width: 767px) {
+    .editor-columns { grid-template-columns: 1fr; }
+}
+
+
 /* --- Footer --- */
 .site-footer {
     background-color: #111;

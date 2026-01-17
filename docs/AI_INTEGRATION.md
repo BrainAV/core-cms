@@ -38,3 +38,18 @@ Settings will be managed in **Admin > Settings > AI Configuration**.
 ## 5. Security Considerations
 *   **API Keys**: Stored in the database (`options` table). In future versions, we may support defining these in `config.php` for higher security.
 *   **Rate Limiting**: The API endpoint should implement basic rate limiting to prevent abuse.
+
+## 6. Data Flow: AI to Editor
+
+To ensure the AI output is compatible with Editor.js, we follow a two-tier transformation strategy:
+
+### Tier 1: Forced JSON (Current)
+We explicitly instruct the AI to return a JSON array of blocks. This is fast because no secondary parsing is required, but it is "brittle" if the AI hallucinations the syntax.
+
+### Tier 2: Markdown Fallback (Planned)
+If the AI output fails JSON validation, the system should attempt to parse Markdown. 
+- `# ` -> `header` block
+- `* ` or `1. ` -> `list` block
+- `> ` -> `quote` block
+
+**Goal**: Transition to a dedicated "Markdown-to-Blocks" transformer utility (client-side) to allow the AI to speak its native language (Markdown) while satisfying Editor.js (JSON).
