@@ -3,23 +3,26 @@
 [![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Database](https://img.shields.io/badge/Database-MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)](https://mariadb.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE.md)
-[![Status](https://img.shields.io/badge/Status-Phase_5:_Event_Planner-orange?style=for-the-badge)](.github/ROADMAP.md)
-[![Demo](https://img.shields.io/badge/Demo-Live_Site-success?style=for-the-badge&logo=firefox&logoColor=white)](https://core-cms.brainav.ca/)
+[![Status](https://img.shields.io/badge/Status-Phase_6:_Plugins-purple?style=for-the-badge)](.github/ROADMAP.md)
+[![Demo](https://img.shields.io/badge/Demo-Live_Showcase-success?style=for-the-badge&logo=firefox&logoColor=white)](https://core-cms.brainav.ca/)
+[![Production](https://img.shields.io/badge/Production-BrainAV.ca-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://brainav.ca)
 
-A lightweight, modular Content Management System built with PHP and MySQL. Designed with a "Core + Plugin" architecture, featuring a specialized Event Planner module.
+Core CMS is a modern, lightweight, and **AI-Native** Content Management System built with PHP 8.3. It is designed for speed, modularity, and a premium writing experience.
+
+### 🌐 Live Sites
+*   **Organization Site**: [BrainAV.ca](https://brainav.ca) (Production)
+*   **CMS Showcase**: [core-cms.brainav.ca](https://core-cms.brainav.ca) (Live Demo)
 
 ## 🚀 Features
-*   **Lightweight Core**: Fast, secure, and bloat-free.
-*   **Modular Architecture**: Features are added as plugins.
-*   **Block Editor**: Modern, JSON-based content editing (Editor.js).
-*   **Media Library**: Secure file uploads and management.
+*   **AI-Powered (Corex Intelligence)**: Built-in Admin Copilot for drafting, summarizing, and SEO generation.
+*   **Block Editor (Gutenberg-Quest)**: Modern, JSON-based content editing with support for multi-column layouts and block alignment.
+*   **Lightweight Core**: Fast, secure, and bloat-free foundation.
+*   **Modular Architecture**: Features are added as plugins (Event Planner, etc.).
+*   **Media Library**: Secure file uploads with metadata editing (Alt text, captions).
 *   **Role-Based Access**: Granular permissions for Admins, Editors, and Subscribers.
 *   **Theme System**: Switchable designs with a custom Theme Manager.
-*   **Secure**: Built with PDO, prepared statements, and modern password hashing.
-*   **Site Identity**: Manage branding (Logo, Title) without code.
-*   **Label Editor**: Customize UI text strings for localization or branding.
-*   **SEO Friendly**: Built-in routing for pretty URLs.
-*   **Dynamic Menus**: Manage navigation links directly from the admin dashboard.
+*   **SEO Ready**: Pretty URLs, custom slugs, and auto-generated XML Sitemap.
+*   **Identity & Labels**: Manage site branding and UI text without touching code.
 
 ## 📂 Documentation
 *   **Roadmap**: [View Active Roadmap](.github/ROADMAP.md)
