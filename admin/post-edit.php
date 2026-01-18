@@ -211,6 +211,16 @@ if (!empty($post['post_content'])) {
             min-height: 300px; 
         }
         .codex-editor__redactor { padding-bottom: 50px !important; }
+
+        /* Media Modal Styles */
+        #media-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .media-modal-content { background: white; padding: 25px; border-radius: 12px; width: 80%; max-width: 900px; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .media-grid-picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .media-picker-item { cursor: pointer; border: 2px solid transparent; transition: all 0.2s; border-radius: 6px; overflow: hidden; height: 120px; background: #eee; }
+        .media-picker-item:hover { border-color: #007bff; transform: scale(1.05); }
+        .media-picker-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        #media-close-btn { float: right; cursor: pointer; font-size: 1.5em; color: #666; }
     </style>
     <div class="container">
         <div class="card">
@@ -238,6 +248,7 @@ if (!empty($post['post_content'])) {
                         <?php if (get_option('ai_enabled', '0') === '1'): ?>
                         <button type="button" id="ai-open-btn" style="background:none; border:none; color:#007bff; cursor:pointer; font-size:0.9em; font-weight:bold;">✨ AI Assist</button>
                         <?php endif; ?>
+                        <button type="button" id="media-open-btn" style="background:none; border:none; color:#28a745; cursor:pointer; font-size:0.9em; font-weight:bold; margin-left: 10px;">🖼️ Media Library</button>
                     </label>
                     <div id="editorjs"></div>
                     <input type="hidden" name="post_content" id="post_content_input">
@@ -307,6 +318,18 @@ if (!empty($post['post_content'])) {
     </div>
     <?php endif; ?>
 
+    <!-- Media Modal -->
+    <div id="media-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div class="media-modal-content">
+            <span id="media-close-btn">&times;</span>
+            <h2 style="margin-top: 0;">🖼️ Select Media Library Image</h2>
+            <p style="color: #666; font-size: 0.9em;">Click an image to insert it into the editor.</p>
+            <div id="media-grid-picker" class="media-grid-picker">
+                <!-- Data loaded via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Editor.js & Plugins -->
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
@@ -319,8 +342,12 @@ if (!empty($post['post_content'])) {
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/editorjs-text-alignment-blocktune@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@calumk/editorjs-columns@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-inline-link@latest"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
         // Safely define tools to prevent crashes if a CDN fails
         const tools = {};
         
@@ -342,7 +369,7 @@ if (!empty($post['post_content'])) {
         if (typeof Header !== 'undefined') {
             tools.header = { 
                 class: Header, 
-                inlineToolbar: true, 
+                inlineToolbar: ['link', 'color', 'marker', 'bold', 'italic'], 
                 tunes: ['alignment'],
                 config: { placeholder: 'Header' } 
             };
@@ -351,7 +378,7 @@ if (!empty($post['post_content'])) {
         if (typeof Paragraph !== 'undefined') {
             tools.paragraph = {
                 class: Paragraph,
-                inlineToolbar: true,
+                inlineToolbar: ['link', 'color', 'marker', 'bold', 'italic'],
                 tunes: ['alignment']
             };
         }
@@ -362,6 +389,39 @@ if (!empty($post['post_content'])) {
         if (typeof RawTool !== 'undefined') tools.raw = RawTool;
         if (typeof CodeTool !== 'undefined') tools.code = CodeTool;
         
+        const colorConfig = {
+            colorCollections: ['#FF1300', '#EC78FF', '#191105', '#DCC9B6', '#72635B', '#413B37', '#000000', '#28a745', '#007bff'],
+            defaultColor: '#FF1300',
+            type: 'text', 
+            customPicker: true 
+        };
+
+        if (typeof Marker !== 'undefined') {
+            tools.marker = {
+                class: Marker,
+                shortcut: 'CMD+SHIFT+M',
+            };
+        }
+
+        if (typeof ColorPlugin !== 'undefined') {
+            tools.color = {
+                class: ColorPlugin,
+                config: colorConfig
+            };
+        }
+
+        const linkConfig = {
+            showTargetToggle: true,
+            defaultTarget: '_self'
+        };
+
+        if (typeof InlineLink !== 'undefined') {
+            tools.link = {
+                class: InlineLink,
+                config: linkConfig
+            };
+        }
+
         if (typeof ImageTool !== 'undefined') {
             tools.image = {
                 class: ImageTool,
@@ -372,24 +432,36 @@ if (!empty($post['post_content'])) {
         // 3. Columns Internal Tools (A separate object to avoid circular references)
         const columnTools = {};
         
-        // Add Alignment to columnTools so nested blocks can find it
+        // Add Alignment, Color, Link to columnTools so nested blocks can find them
         if (typeof AlignmentBlockTune !== 'undefined') {
             columnTools.alignment = {
                 class: AlignmentBlockTune,
-                config: {
-                    default: 'left',
-                    blocks: {
-                        header: 'left',
-                        paragraph: 'left'
-                    }
-                },
+                config: { default: 'left', blocks: { header: 'left', paragraph: 'left' } }
+            };
+        }
+
+        if (typeof ColorPlugin !== 'undefined') {
+            columnTools.color = {
+                class: ColorPlugin,
+                config: colorConfig
+            };
+        }
+
+        if (typeof Marker !== 'undefined') {
+            columnTools.marker = Marker;
+        }
+        
+        if (typeof InlineLink !== 'undefined') {
+            columnTools.link = {
+                class: InlineLink,
+                config: linkConfig
             };
         }
 
         if (typeof Header !== 'undefined') {
             columnTools.header = {
                 class: Header,
-                inlineToolbar: true,
+                inlineToolbar: ['link', 'color', 'marker', 'bold', 'italic'],
                 tunes: ['alignment'],
                 config: { placeholder: 'Column Header' }
             };
@@ -401,11 +473,10 @@ if (!empty($post['post_content'])) {
                 config: { endpoints: { byFile: 'api/upload.php' } }
             };
         }
-        // Use the explicit Paragraph class for columns too and apply alignment tunes
         if (typeof Paragraph !== 'undefined') {
             columnTools.paragraph = {
                 class: Paragraph,
-                inlineToolbar: true,
+                inlineToolbar: ['link', 'color', 'marker', 'bold', 'italic'],
                 tunes: ['alignment']
             };
         }
@@ -425,17 +496,70 @@ if (!empty($post['post_content'])) {
             holder: 'editorjs',
             placeholder: 'Let`s write an awesome story!',
             tools: tools,
+            inlineToolbar: ['link', 'color', 'marker', 'bold', 'italic'],
             data: <?php echo $editor_data; ?>
+        });
+
+        // --- Media Library Picker Logic ---
+        function openMediaLibrary(callback) {
+            const modal = document.getElementById('media-modal');
+            const grid = document.getElementById('media-grid-picker');
+            modal.style.display = 'flex';
+            grid.innerHTML = '<div style="padding: 20px;">Loading your library...</div>';
+
+            fetch('api/media-list.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        grid.innerHTML = '';
+                        if (data.items.length === 0) {
+                            grid.innerHTML = '<div style="padding: 20px; grid-column: 1/-1; text-align: center;">No images found in library.</div>';
+                        }
+                        data.items.forEach(item => {
+                            const div = document.createElement('div');
+                            div.className = 'media-picker-item';
+                            div.innerHTML = `<img src="../${item.file_path}" title="${item.file_name}">`;
+                            div.onclick = () => {
+                                callback(`../${item.file_path}`);
+                                modal.style.display = 'none';
+                            };
+                            grid.appendChild(div);
+                        });
+                    } else {
+                        grid.innerHTML = '<div style="padding: 20px; color: red;">Failed to load media.</div>';
+                    }
+                });
+        }
+
+        // Trigger Media Library
+        const mediaOpenBtn = document.getElementById('media-open-btn');
+        if (mediaOpenBtn) {
+            mediaOpenBtn.addEventListener('click', () => {
+                openMediaLibrary((url) => {
+                    editor.blocks.insert('image', {
+                        file: { url: url },
+                        caption: ''
+                    });
+                });
+            });
+        }
+
+        document.getElementById('media-close-btn').addEventListener('click', () => {
+            document.getElementById('media-modal').style.display = 'none';
         });
 
         // Intercept Form Submit
         document.getElementById('post-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Saving Editor.js content...');
             editor.save().then((outputData) => {
+                console.log('Content captured:', outputData);
                 document.getElementById('post_content_input').value = JSON.stringify(outputData);
+                console.log('Hidden field updated. Submitting form...');
                 this.submit();
             }).catch((error) => {
-                console.log('Saving failed: ', error);
+                console.error('Saving failed:', error);
+                alert('Failed to save content. Check console.');
             });
         });
 
@@ -490,7 +614,8 @@ if (!empty($post['post_content'])) {
                 });
             });
         }
-    </script>
+    }); // End DOMContentLoaded
+</script>
 </body>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
 </html>

@@ -2,13 +2,13 @@
 
 This document tracks the active development status of Core CMS.
 
-## 🟢 Phase 1: Foundation (The Skeleton)
+## ✅ Phase 1: Foundation (The Skeleton)
 - [x] Setup Git repository and `.gitignore`.
 - [x] Define `db/schema.sql` (Users, Posts/Pages, Menus, Options, Events).
 - [x] Create `config/db.php` (PDO connection).
 - [x] Build basic `index.php` (Hello World).
 
-## 🟢 Phase 2: Admin MVP
+## ✅ Phase 2: Admin MVP
 - [x] **Auth**: Secure Login/Logout system.
 - [x] **Dashboard**: Admin landing page.
 - [x] **CRUD**: Create, Read, Update, Delete Posts.
@@ -22,7 +22,7 @@ This document tracks the active development status of Core CMS.
 - [x] **Menus**: Database-driven Menu System.
 - [x] **Breadcrumbs**: Helper function and Settings.
 
-## 🟢 Phase 4: Expansion
+## ✅ Phase 4: Expansion
 - [x] Categories & Tags.
 - [x] Media Manager (Uploads & Deletion).
 - [x] Media Metadata (Alt Text, Captions).
@@ -36,7 +36,7 @@ This document tracks the active development status of Core CMS.
 - [x] User Profile / Control Panel.
 - [x] Dynamic Sitemap (XML).
 
-## ✨ Editor Side Quest (The Gutenberg Path)
+## 🟢 Phase 4.1: ✨ Editor Side Quest (The Gutenberg Path)
 - [x] **Base Blocks**: H1-H6, Lists, Quotes, Code, Raw HTML.
 - [x] **Media**: Image uploads with caption support.
 - [x] **Layout**: Multi-column responsive grids.
@@ -44,20 +44,20 @@ This document tracks the active development status of Core CMS.
 - [ ] **Style**: Group/Container blocks with backgrounds.
 - [ ] **Data**: Structured Table blocks.
 
-## ✅ Phase 5: AI Integration (Core Intelligence)
+## 🟡 Phase 5: AI Integration (Core Intelligence)
 - [x] **Admin Copilot**: Content generation helper.
 - [x] **AI Refinement**: Improve JSON parsing, handle lists/headers, and reduce hallucinations.
 - [ ] **Frontend Chat**: Visitor Q&A Widget.
 - [ ] **Generative UI**: AI-created layouts (Experimental).
 
-## 🟢 Phase 6: Plugins & Expansion
+## 🔴 Phase 6: Plugins & Expansion
 - [ ] Plugin Architecture (Hooks).
 - [ ] Event Database Table.
 - [ ] Admin Event Management (CRUD).
 - [ ] Frontend Event Display.
 - [ ] **Event Agent**: AI Booking via Function Calling.
 
-## 🔵 Phase 7: Commerce, IoT & Plugins
+## 🔴 Phase 7: Commerce, IoT & Plugins
 - [ ] **Store / E-commerce**:
     - [ ] PayPal Standard & Stripe Integration.
     - [ ] Printful Merch connection.

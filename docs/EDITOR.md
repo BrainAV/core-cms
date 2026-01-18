@@ -63,7 +63,10 @@ This roadmap tracks the "Gutenberg-Quest" to make Core CMS a powerful visual edi
 - [x] **Nested Alignment**: Support for block tunes (alignment) inside nested column blocks.
 - [x] **Recursive Rendering**: PHP logic to handle nested blocks within columns.
 
-### 🟡 Phase 3: Advanced Structure (Next Up)
+### ✅ Phase 3: Advanced Structure & Rich Text
+- [x] **Link Targets**: Option to open links in a new tab (`target="_blank"`) via Inline Link tool.
+- [x] **Text Styling**: Inline tools for text color and **Marker** (highlighting).
+- [x] **Media Library Integration**: Standalone picker to select existing images from the CMS Media Library.
 - [ ] **Container/Group Block**: Ability to wrap blocks in a `div` with custom background colors and padding.
 - [ ] **Tables**: Support for structured data and pricing tables.
 - [ ] **Table of Contents**: Auto-generated TOC based on page headers.

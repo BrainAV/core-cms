@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Editor Enhancements**:
+  - Integrated **Inline Link** tool with support for link targets (open in new tab).
+  - Integrated **Text Color** and **Marker** (Highlighter) plugins for rich text styling.
+  - Added **Media Library Picker** to the post editor, allowing selection and insertion of existing images from the CMS library.
+  - Created `admin/api/media-list.php` API endpoint to serve media library assets to the editor.
+
+### Fixed
+- **Editor Stability**: Resolved critical JavaScript errors and race conditions in the post editor by wrapping tool initialization in `DOMContentLoaded` and improving nested tool configuration.
+- **Color Picker**: Fixed a crash in the Text Color tool when used inside nested column blocks by unifying configuration inheritance.
+
 ## [0.4.0] - 2026-01-17
 
 ### Added
